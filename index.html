@@ -1,0 +1,2718 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Transform your vision into reality with our powerful AI UI Kit. Build cutting-edge AI startups, tools, and products with modern templates for Tailwind CSS and Figma." />
+    <meta name="keywords" content="AI UI Kit, Tailwind CSS, Figma, AI Tools, AI Templates, AI Startups" />
+    <link rel="icon" href="./assets/images/favicon.png" />
+    <link href="./assets/css/glightbox.css" rel="stylesheet" />
+    <link href="./assets/css/output.css" rel="stylesheet" />
+    <title>AI UI Kit - Modern AI Tools & Templates for Tailwind CSS & Figma</title>
+  </head>
+  <body
+    x-data="{      
+       mobileMenuOpen: false,
+        activeDropdown: null,
+  darkMode: localStorage.getItem('darkMode') === 'true',
+  toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          localStorage.setItem('darkMode', this.darkMode);
+          
+          if (this.darkMode) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        },
+        toggleDropdown(dropdown) {
+          if (window.innerWidth < 1024) {
+            this.activeDropdown = this.activeDropdown === dropdown ? null : dropdown;
+          }
+        },
+        closeDropdowns() {
+          this.activeDropdown = null;
+        },
+        init() {
+          // Apply dark mode on page load if saved in localStorage
+          const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+          
+          if (savedDarkMode) {
+            this.darkMode = true;
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            this.darkMode = false;
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+          
+          // Close dropdowns when clicking outside
+          document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item') && !e.target.closest('.dropdown-menu') && !e.target.closest('.mobile-dropdown-toggle')) {
+              this.closeDropdowns();
+            }
+          });
+          
+          // Reset activeDropdown when resizing to desktop
+          window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+              this.activeDropdown = null;
+              this.mobileMenuOpen = false;
+            }
+          });
+        }
+      }"
+  >
+    <div class="dark:bg-dark-primary">
+      <!-- Header Start -->
+      <header
+        class="bg-white dark:bg-dark-primary border-b dark:border-gray-800 border-gray-100 sticky top-0 z-50 py-4 lg:py-0"
+      >
+        <div class="px-4 sm:px-6 lg:px-7">
+          <div class="flex items-center justify-between">
+            <!-- Logo and Mobile Menu Button -->
+            <div class="flex items-center">
+              <!-- Logo -->
+              <a href="index.html">
+                <img
+                  src="./assets/images/logo-black.svg"
+                  class="block dark:hidden"
+                  alt="StashOffer's Logo"
+                />
+                <img
+                  src="./assets/images/logo-white.svg"
+                  class="hidden dark:block"
+                  alt="StashOffer's Logo"
+                />
+              </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex lg:items-center">
+              <a
+                href="index.html"
+                class="text-gray-800 dark:text-white/90 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Home</a
+              >
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Business Solutions</a
+              >
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Resources</a
+              >
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Company</a
+              >
+
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Blog</a
+              >
+              
+
+              <a
+                href="contact.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Contact Us</a
+              >
+            </nav>
+
+            <!-- Right side buttons -->
+            <div class="flex items-center gap-4">
+              <!-- Theme toggle -->
+              <button
+                @click="toggleDarkMode()"
+                class="inline-flex items-center dark:hover:bg-white/5 dark:hover:text-white/90 hover:bg-gray-100 hover:text-gray-800 text-gray-500 dark:text-gray-400 justify-center border border-gray-200 dark:border-gray-700 rounded-full size-11"
+              >
+                <svg
+                  x-show="!darkMode"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M6.24683 7.08492C6.24683 10.7677 9.23232 13.7532 12.9151 13.7532C14.6687 13.7532 16.2641 13.0764 17.4545 11.9697C16.584 15.2727 13.5765 17.7083 10.0001 17.7083C5.74289 17.7083 2.29175 14.2572 2.29175 9.99996C2.29175 6.42356 4.72736 3.41602 8.03036 2.54558C6.92367 3.73594 6.24683 5.33139 6.24683 7.08492Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  x-show="darkMode"
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </button>
+              <!-- Mobile menu button -->
+              <button
+                @click.stop="mobileMenuOpen = !mobileMenuOpen"
+                type="button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 lg:hidden"
+              >
+                <span class="sr-only">Open main menu</span>
+                <svg
+                  class="h-6 w-6"
+                  x-show="!mobileMenuOpen"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+                <svg
+                  class="h-6 w-6"
+                  x-show="mobileMenuOpen"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <!-- Sign In button (desktop) -->
+              <a
+                href="signin.html"
+                class="text-sm hidden lg:block font-medium text-gray-700 dark:text-gray-400 hover:text-primary-500"
+                >Sign In</a
+              >
+              <button
+                onclick="window.location.href='signup.html'"
+                class="lg:inline-flex items-center px-5 py-3 gradient-btn hidden text-sm text-white rounded-full button-bg h-11"
+                >Get Started Free</button
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div
+          x-show="mobileMenuOpen"
+          x-cloak
+          class="lg:hidden absolute bg-white dark:bg-dark-primary w-full border-b border-gray-200 dark:border-gray-800"
+        >
+          <div class="pt-2 pb-3 space-y-1 px-4 sm:px-6">
+            <a
+              href="index.html"
+              class="block px-3 py-2 rounded-md text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Home
+            </a>
+
+            <!-- Products Dropdown (Mobile) -->
+            <div>
+              <button
+                @click.stop="toggleDropdown('products')"
+                class="mobile-dropdown-toggle flex justify-between items-center w-full px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <span>Products</span>
+                <svg
+                  class="h-4 w-4 transition-transform duration-200"
+                  :class="{'transform rotate-180': activeDropdown === 'products'}"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Pages Dropdown (Mobile) -->
+            <div>
+              <button
+                @click.stop="toggleDropdown('pages')"
+                class="mobile-dropdown-toggle flex justify-between items-center w-full px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <span>Pages</span>
+                <svg
+                  class="h-4 w-4 transition-transform duration-200"
+                  :class="{'transform rotate-180': activeDropdown === 'pages'}"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              
+            </div>
+
+            <a
+              href="contact.html"
+              class="block px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Contact
+            </a>
+
+            <!-- Mobile-only buttons -->
+            <div class="px-3">
+              <a
+                href="signin.html"
+                class="text-sm block py-3 font-medium text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white/90"
+              >
+                Sign In
+              </a>
+              <button
+                onclick="window.location.href='contact.html'"
+                class="inline-flex gradient-btn items-center px-5 py-3 text-sm text-white rounded-full button-bg h-11"
+              >
+                Get Started Free
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Header End -->
+
+      <!-- Main Start -->
+      <main>
+        <!-- Hero Start -->
+        <section class="pt-16 relative overflow-hidden">
+          <div class="wrapper">
+            <div class="mx-auto" style="max-width: 1300px !important;">
+              <div class="text-center pb-16">
+                <div
+                  class="rounded-full mb-6 h-10 gradient-border inline-flex items-center"
+                >
+                  <div
+                    class="bg-white dark:bg-dark-primary py-2 text-sm items-center gap-2 px-5 inline-flex dark:text-white/90 rounded-full z-10 relative"
+                  >
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 22 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M15.1699 0.58575C14.9429 -0.19525 13.7499 -0.19525 13.5229 0.58575L13.2029 1.69275C12.5109 4.07875 11.5669 5.94175 8.99994 6.58375L7.80794 6.88175C7.63097 6.91697 7.47168 7.01246 7.35721 7.15195C7.24274 7.29144 7.18018 7.4663 7.18018 7.64675C7.18018 7.8272 7.24274 8.00206 7.35721 8.14155C7.47168 8.28104 7.63097 8.37653 7.80794 8.41175L8.99994 8.70975C11.5669 9.35275 12.5109 11.2157 13.2029 13.6007L13.5229 14.7078C13.7499 15.4897 14.9429 15.4897 15.1699 14.7078L15.4899 13.6007C16.1819 11.2157 17.1269 9.35275 19.6939 8.71075L20.8839 8.41175C21.0609 8.37653 21.2202 8.28104 21.3347 8.14155C21.4491 8.00206 21.5117 7.8272 21.5117 7.64675C21.5117 7.4663 21.4491 7.29144 21.3347 7.15195C21.2202 7.01246 21.0609 6.91697 20.8839 6.88175L19.6939 6.58375C17.1269 5.94175 16.1819 4.07875 15.4899 1.69375L15.1699 0.58575Z"
+                        fill="url(#paint0_linear_9274_1469)"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M5.28304 11.8368C5.14704 11.3488 4.43104 11.3488 4.29604 11.8368L4.10304 12.5288C3.68805 14.0188 3.12205 15.1838 1.58104 15.5858L0.867045 15.7718C0.759268 15.7971 0.663206 15.8581 0.594451 15.9448C0.525695 16.0316 0.488281 16.1391 0.488281 16.2498C0.488281 16.3605 0.525695 16.4679 0.594451 16.5547C0.663206 16.6415 0.759268 16.7025 0.867045 16.7278L1.58104 16.9148C3.12104 17.3158 3.68805 18.4808 4.10304 19.9708L4.29604 20.6628C4.43104 21.1518 5.14704 21.1518 5.28304 20.6628L5.47605 19.9708C5.89005 18.4808 6.45805 17.3158 7.99804 16.9148L8.71204 16.7278C8.81982 16.7025 8.91588 16.6415 8.98464 16.5547C9.05339 16.4679 9.09081 16.3605 9.09081 16.2498C9.09081 16.1391 9.05339 16.0316 8.98464 15.9448C8.91588 15.8581 8.81982 15.7971 8.71204 15.7718L7.99804 15.5858C6.45805 15.1848 5.89005 14.0198 5.47605 12.5288L5.28304 11.8368Z"
+                        fill="url(#paint1_linear_9274_1469)"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9274_1469"
+                          x1="7.18018"
+                          y1="0"
+                          x2="21.5117"
+                          y2="15.2943"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#FF58D5" />
+                          <stop offset="1" stop-color="#FFA0E7" />
+                        </linearGradient>
+                        <linearGradient
+                          id="paint1_linear_9274_1469"
+                          x1="9.09081"
+                          y1="11.4708"
+                          x2="0.488281"
+                          y2="21.0295"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#7A5AF8" />
+                          <stop offset="1" stop-color="#B5A2FF" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <p>Powerful AI Kit for AI Products, Tools and Startups</p>
+                  </div>
+                </div>
+            
+                <div class="flex flex-col lg:flex-row justify-between gap-12">
+
+                   <div class="space-y-6 max-w-md flex flex-col justify-evenly">
+                   <div>
+                    <h1
+                    class="text-left text-gray-700 mx-auto font-bold mb-4 text-4xl sm:text-[50px] dark:text-white/90 sm:leading-[64px] max-w-[700px]"
+                  >
+                    <span class="gradient-text">AI-Powered</span> Market Research Agent
+                  </h1>
+                  <p
+                    class="text-left max-w-[537px] text-center mx-auto dark:text-gray-400 text-gray-500 text-base"
+                  >
+                  Tell us what you are looking for - Our AI Agent scans the entire local Businesses to find your best match in seconds. No phone calls, emails or legwork required.</p>
+                  
+                   </div>
+                    <div
+                  class="mt-9 flex sm:flex-row flex-col gap-3 relative z-30 items-center justify-end"
+                >
+                  <button
+                    class="bg-primary-500 transition h-12 inline-flex items-center justify-center hover:bg-primary-600 px-6 py-3 rounded-full text-white text-sm"
+                    >Get Started</button
+                  >
+                  <a
+                    href="https://www.youtube.com/watch?v=_iHmNaQBtKk"
+                    class="rounded-full video-popup flex h-12 gap-3 items-center text-sm border bg-white dark:bg-white/10 dark:border-white/[0.05] dark:text-white border-gray-100 p-1.5 pr-6"
+                  >
+                    <span
+                      class="size-9 rounded-full gradient-bg-two inline-flex items-center justify-center text-sm font-medium"
+                    >
+                      <svg
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.5 3.71077L3.5 12.3482C3.5 13.5211 4.78545 14.2402 5.78489 13.6265L12.8183 9.30776C13.7717 8.7223 13.7717 7.33672 12.8183 6.75125L5.7849 2.43251C4.78545 1.81882 3.5 2.53795 3.5 3.71077Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </span>
+                    Watch Intro
+                  </a>
+                </div>
+                  </div>
+                  
+
+                     <div class="space-y-6 flex-1 flex items-center justify-end">
+                     <img src="/assets/images/hero/rocket.svg" alt="" class="w-full h-auto max-w-2xl">
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="max-w-[1000px] mx-auto relative">
+              
+              <div class="p-3 sm:p-[18px] relative z-30 rounded-[32px] border border-white/30 dark:border-white/10 bg-white/20">
+               <div style="display: flex; width: 100%; gap: 20px;">
+               <div style="width: 100%; display: flex; flex-direction: column; gap: 20px;">
+                <div style="height: 400px; background: linear-gradient(to bottom, #D1E3FF 0%, #FFD4A3 100%); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; color: #333;">
+                  <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px; width: 65%;">Puzzle Başlığı</h3>
+                  <p style="font-size: 16px; line-height: 1.5; opacity: 0.8; width: 65%;">Bu puzzle kartının açıklaması burada yer alacak. Kullanıcılar için detaylı bilgi ve açıklama metni.</p>
+                </div> 
+               <div style="height: 100px; background: linear-gradient(to bottom, #D1E3FF 0%, #FFD4A3 100%); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; color: #333;">
+                  <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; width: 65%;">Küçük Başlık</h4>
+                  <p style="font-size: 14px; opacity: 0.8; width: 65%;">Kısa açıklama metni</p>
+               </div> 
+               </div>
+              <div style="width: 100%; display: flex; flex-direction: column; gap: 20px;">
+                <div style="height: 300px; background: linear-gradient(to bottom, #D1E3FF 0%, #FFD4A3 100%); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; color: #333;">
+                  <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 12px; width: 65%;">Orta Başlık</h3>
+                  <p style="font-size: 15px; line-height: 1.5; opacity: 0.8; width: 65%;">Orta boyutlu kart için açıklama metni burada yer alacak.</p>
+                </div> 
+                <div style="height: 200px; background: linear-gradient(to bottom, #D1E3FF 0%, #FFD4A3 100%); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; color: #333;">
+                  <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; width: 65%;">Kart Başlığı</h4>
+                  <p style="font-size: 14px; opacity: 0.8; width: 65%;">Kart açıklaması burada</p>
+                </div> 
+              </div>
+               </div>
+              </div>
+              <div
+                class="absolute hidden lg:block z-10 -top-20 -translate-y-20 left-1/2 -translate-x-1/2"
+              >
+                <img src="./assets/images/hero-bg-shape.svg" style="max-width: fit-content !important;" width="1300" height="1001" alt="Hero Background Shape" />
+              </div>
+            </div>
+          </div>
+          
+          <div
+            class="hero-glow-bg w-full h-[670px] absolute z-10 bottom-0"
+          ></div>
+          
+          <div class="wrapper">
+            <div class="max-w-[1016px] relative z-30 mx-auto pt-14 pb-16">
+              <p class="text-center text-white/50 text-lg font-medium">
+                Trusted by worlds largest companies including...
+              </p>
+              <div
+                class="flex flex-wrap justify-center items-center gap-7 md:gap-14 mt-10"
+              >
+                <img
+                  src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 1"
+                />
+                <img
+                  src="./assets/images/brands/br-2.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 2"
+                />
+                <img
+                src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                alt="Trusted Brand 1"
+                />
+                <img
+              src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+              alt="Trusted Brand 1"
+                />
+                <img
+            src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+            alt="Trusted Brand 1"
+          />
+               
+              </div>
+            </div>
+          </div>
+
+
+
+         
+        </section>
+        
+        <!-- Hero End -->
+
+
+        <div class="w-full bg-gray-50 dark:bg-white/[0.01]">
+          <img class="w-full" src="./assets/images/clouds-shape.svg" alt="Clouds Shape Background">
+        </div>
+
+
+        <!-- Core Feature Start -->
+        <section class="py-28 bg-gray-50 dark:bg-white/[0.01]">
+          <div class="wrapper">
+            <div class="max-w-2xl mx-auto mb-12 text-center">
+              <h2
+                class="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg"
+              >
+              How Our <span class="gradient-text">AI-Powered</span> Agent Simplifies Sourcing — From Input to Instant Matches
+              </h2>
+              <p
+                class="max-w-xl mx-auto leading-6 text-gray-500 dark:text-gray-400"
+              >
+              "We will protect your personal information and will not share it with any businesses without your consent"
+              </p>
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8"
+            >
+              <!-- 1. Kart -->
+              <div class="core-feature-wrapper bg-white p-9 border border-gray-200 dark:border-white/[0.03] dark:bg-white/[0.05] relative h-full flex flex-col">
+                <div class="flex justify-start mb-6">
+                  <img src="/assets/images/benefits/post_your_job.svg" alt="Post Icon" class="w-20 h-20 select-none pointer-events-none" />
+                </div>
+                <h3 class="mb-4 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl max-w-[312px]">Post Your job</h3>
+                <p class="text-gray-500 max-w-[312px] dark:text-gray-400 flex-grow">Answer a few simple questions — no forms, no confusion</p>
+              </div>
+              <!-- 2. Kart -->
+              <div class="core-feature-wrapper bg-white p-9 border border-gray-200 dark:border-white/[0.03] dark:bg-white/[0.05] relative h-full flex flex-col">
+                <div class="flex justify-start mb-6">
+                  <img src="/assets/images/benefits/receive_offers.svg" alt="Offers Icon" class="w-20 h-20 select-none pointer-events-none" />
+                </div>
+                <h3 class="mb-4 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl max-w-[312px]">⁠Receive Offers</h3>
+                <p class="text-gray-500 max-w-[312px] dark:text-gray-400 flex-grow">Get tailored offers, compare with ease, ask questions, make courter offer, or request revision</p>
+              </div>
+              <!-- 3. Kart -->
+              <div class="core-feature-wrapper bg-white p-9 border border-gray-200 dark:border-white/[0.03] dark:bg-white/[0.05] relative h-full flex flex-col">
+                <div class="flex justify-start mb-6">
+                  <img src="/assets/images/benefits/rest_assured.svg" alt="Rest Icon" class="w-20 h-20 select-none pointer-events-none" />
+                </div>
+                <h3 class="mb-4 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl max-w-[312px]">⁠Rest Assured</h3>
+                <p class="text-gray-500 max-w-[312px] dark:text-gray-400 flex-grow">Our AI instantly finds the best-matched vendors for your reques</p>
+              </div>
+              <!-- 4. Kart -->
+              <div class="core-feature-wrapper bg-white p-9 border border-gray-200 dark:border-white/[0.03] dark:bg-white/[0.05] relative h-full flex flex-col">
+                <div class="flex justify-start mb-6">
+                  <img src="/assets/images/benefits/confirm.svg" alt="Confirm Icon" class="w-20 h-20 select-none pointer-events-none" />
+                </div>
+                <h3 class="mb-4 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl max-w-[312px]">Confirm</h3>
+                <p class="text-gray-500 max-w-[312px] dark:text-gray-400 flex-grow">Pick and choose the best one and confirm it with one click</p>
+              </div>
+              <!-- 5. Kart (Win For All) -->
+              <div class="core-feature-wrapper bg-white p-9 border border-gray-200 dark:border-white/[0.03] dark:bg-white/[0.05] relative h-full flex flex-col">
+                <div class="flex justify-start mb-6">
+                  <img src="/assets/images/benefits/win_for_all.svg" alt="Win Icon" class="w-24 h-24 select-none pointer-events-none" />
+                </div>
+                <h3 class="mb-4 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl max-w-[312px]">Win For All</h3>
+                <p class="text-gray-500 max-w-[312px] dark:text-gray-400 flex-grow">Earn StashPoints with every completed transaction</p>
+              </div>
+              <!-- Robot SVG (6. kart yerine) -->
+              <div class="flex items-center justify-center">
+                <img src="/assets/images/benefits/robot.svg" alt="AI Robot" style="max-width:180px; width:100%; height:auto;" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Core Feature End -->
+
+        <!-- Tab Start -->
+        <section class="py-14 md:py-28 dark:bg-dark-primary bg-gray-50">
+          <div class="wrapper">
+            <div class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center">
+              <!-- Sol: Görsel -->
+              <div class="flex justify-center">
+                <img src="./assets/images/tab-image/tab-image-1.svg" alt="StashOffer AI Screenshot" class="w-full max-w-[500px] rounded-2xl shadow-lg">
+              </div>
+              <!-- Sağ: İçerik -->
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span class="inline-block self-start bg-yellow-100 text-yellow-600 text-xs font-semibold px-4 py-1 rounded-full w-auto max-w-max mb-2">Generate</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Turn Days of Market Research Into Seconds – <span class="text-primary-500">Powered by AI</span></h2>
+                <ul class="space-y-4 text-gray-600 dark:text-gray-300 text-lg">
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Search the entire market with a single click – no more manual work</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Save time, cut costs, and earn rewards as you purchase</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Create multiple sourcing tasks instantly – we handle the rest, effortlessly</li>
+                </ul>
+                <button class="inline-block self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full shadow transition">Get Started 🚀</button>
+              </div>
+            </div>
+            <div class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center">
+
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span class="inline-block self-start bg-yellow-100 text-yellow-600 text-xs font-semibold px-4 py-1 rounded-full w-auto max-w-max mb-2">Generate</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Turn Days of Market Research Into Seconds – <span class="text-primary-500">Powered by AI</span></h2>
+                <ul class="space-y-4 text-gray-600 dark:text-gray-300 text-lg">
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Search the entire market with a single click – no more manual work</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Save time, cut costs, and earn rewards as you purchase</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Create multiple sourcing tasks instantly – we handle the rest, effortlessly</li>
+                </ul>
+                <button class="inline-block self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full shadow transition">Get Started 🚀</button>
+              </div>
+
+              
+              <div class="flex justify-center">
+                <img src="./assets/images/tab-image/tab-image-1.svg" alt="StashOffer AI Screenshot" class="w-full max-w-[500px] rounded-2xl shadow-lg">
+              </div>
+
+              
+            </div>
+            <div class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center">
+              <!-- Sol: Görsel -->
+              <div class="flex justify-center">
+                <img src="./assets/images/tab-image/tab-image-1.svg" alt="StashOffer AI Screenshot" class="w-full max-w-[500px] rounded-2xl shadow-lg">
+              </div>
+              <!-- Sağ: İçerik -->
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span class="inline-block self-start bg-yellow-100 text-yellow-600 text-xs font-semibold px-4 py-1 rounded-full w-auto max-w-max mb-2">Generate</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Turn Days of Market Research Into Seconds – <span class="text-primary-500">Powered by AI</span></h2>
+                <ul class="space-y-4 text-gray-600 dark:text-gray-300 text-lg">
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Search the entire market with a single click – no more manual work</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Save time, cut costs, and earn rewards as you purchase</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Create multiple sourcing tasks instantly – we handle the rest, effortlessly</li>
+                </ul>
+                <button class="inline-block self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full shadow transition">Get Started 🚀</button>
+              </div>
+            </div>
+            <div class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center">
+
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span class="inline-block self-start bg-yellow-100 text-yellow-600 text-xs font-semibold px-4 py-1 rounded-full w-auto max-w-max mb-2">Generate</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Turn Days of Market Research Into Seconds – <span class="text-primary-500">Powered by AI</span></h2>
+                <ul class="space-y-4 text-gray-600 dark:text-gray-300 text-lg">
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Search the entire market with a single click – no more manual work</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Save time, cut costs, and earn rewards as you purchase</li>
+                  <li class="flex items-start gap-3"><span class="inline-block mt-1 text-primary-500">★</span>Create multiple sourcing tasks instantly – we handle the rest, effortlessly</li>
+                </ul>
+                <button class="inline-block self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-full shadow transition">Get Started 🚀</button>
+              </div>
+
+              
+              <div class="flex justify-center">
+                <img src="./assets/images/tab-image/tab-image-1.svg" alt="StashOffer AI Screenshot" class="w-full max-w-[500px] rounded-2xl shadow-lg">
+              </div>
+
+              
+            </div>
+          </div>
+        </section>
+        <!-- Tab End -->
+
+
+
+
+        <div class="w-full bg-gray-50 dark:bg-white/[0.01]">
+          <img class="w-full" src="./assets/images/clouds-blue-shape.svg" alt="Clouds Shape Background">
+        </div>
+
+        <!-- Benefits Start -->
+        <section class="py-14 md:py-28" style="background-color: rgba(187, 198, 245, 1);">
+          <div class="wrapper">
+            <div class="max-w-2xl mx-auto mb-12 text-center">
+              <h2
+                class="max-w-lg mx-auto mb-3 font-bold text-center text-white dark:text-white/90 text-3xl md:text-title-lg"
+              >
+              Our AI Gets Smarter Every Day
+              </h2>
+              <p
+                class="max-w-2xl mx-auto text-base dark: font-normal leading-6 text-white/50"
+              >
+              Constantly Unlocking New Ways to Simplify and Accelerate Market Research.
+              </p>
+            </div>
+            <div class="max-w-[1008px] mx-auto">
+              <img src="./assets/images/our-ai.svg" alt="">
+            </div>
+          </div>
+        </section>
+        <!-- Benefits End -->
+
+        <!-- Testimonial Start -->
+        <section class="md:py-28 py-14 relative" x-data="{ showAll: false }" style="background: linear-gradient(to bottom, rgba(187, 198, 245, 1) 0%, rgba(187, 198, 245, 0.8) 30%, rgba(249, 250, 251, 0.9) 70%, var(--color-gray-50) 100%);">
+          <div class="wrapper">
+            <div>
+              <div class="max-w-2xl mx-auto mb-12 text-center">
+                <h2
+                  class="mb-3 font-bold text-center text-white text-3xl dark:text-white/90 md:text-title-lg"
+                >
+                  Müşterilerimiz Ne Diyor
+                </h2>
+                <p
+                  class="max-w-xl mx-auto leading-6 text-white dark:text-gray-400"
+                >
+                  StashOffer ile pazar araştırması yapan işletmelerin deneyimleri. 
+                  AI destekli ajanımızın nasıl işlerini kolaylaştırdığını keşfedin.
+                </p>
+              </div>
+
+              <!-- Testimonials Grid -->
+              <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+                <!-- Testimonial 1 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-1.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Ahmet Yılmaz
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Yılmaz Restoran Zinciri
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      StashOffer sayesinde yeni lokasyon araştırmamızı 3 günde tamamladık. 
+                      AI ajanımız bize mükemmel analizler sundu ve karar vermemizi kolaylaştırdı.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 dark:bg-white/[0.03] bg-white/90 rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-2.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Ayşe Demir
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Demir Mobilya Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      Pazar araştırması için aylarca beklemek zorunda kalmıyoruz artık. 
+                      StashOffer'ın AI ajanı bize anında detaylı raporlar sunuyor.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 bg-white/90 rounded-2xl dark:bg-white/[0.03]"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-3.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Mehmet Kaya
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Kaya Teknoloji A.Ş.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      Rekabet analizi için kullandığımız StashOffer, bize rakiplerimiz hakkında 
+                      çok değerli bilgiler sağladı. Kesinlikle tavsiye ederim.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 bg-white/90 rounded-2xl dark:bg-white/[0.03]"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-4.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Fatma Özkan
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Özkan Kozmetik Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      Yeni ürün lansmanımız için pazar araştırması yaparken StashOffer'ın 
+                      AI ajanı bize mükemmel hedef kitle analizi sundu.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 dark:bg-white/[0.03] bg-white/90 rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-5.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Can Arslan
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-white">
+                        Arslan İnşaat Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      Gayrimenkul yatırımlarımız için pazar analizi yaparken StashOffer'ın 
+                      sunduğu veriler çok değerliydi. Hızlı ve güvenilir.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 dark:bg-white/[0.03] bg-white/90 rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-6.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Zeynep Çelik
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Çelik E-ticaret Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      Online satış stratejimizi geliştirmek için kullandığımız StashOffer, 
+                      bize mükemmel pazar fırsatları gösterdi.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Hidden testimonials (shown when "Show more" is clicked) -->
+                <template x-if="showAll">
+                  <!-- Testimonial 7 -->
+                  <div
+                    class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                  >
+                    <div
+                      class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                    >
+                      <div>
+                        <img
+                          src="./assets/images/users/user-1.png"
+                          alt="Ralph Edwards"
+                          class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-gray-800 font-base dark:text-white/90">
+                          Ralph Edwards
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Big Kahuna Burger Ltd
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]"
+                    >
+                      <p
+                        class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                      >
+                        As a Senior Software Developer I found TailAdmin perfect
+                        write code that easy can be used in my projects, which
+                        some are production already.
+                      </p>
+                    </div>
+                  </div>
+                </template>
+
+                <template x-if="showAll">
+                  <!-- Testimonial 8 -->
+                  <div
+                    class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                  >
+                    <div
+                      class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                    >
+                      <div>
+                        <img
+                          src="./assets/images/users/user-5.png"
+                          alt="Ralph Edwards"
+                          class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-gray-800 font-base dark:text-white/90">
+                          Darlene Robertson
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Abstergo Ltd.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]"
+                    >
+                      <p
+                        class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                      >
+                        As a Senior Software Developer I found TailAdmin perfect
+                        write code that easy can be used in my projects, which
+                        some are production already.
+                      </p>
+                    </div>
+                  </div>
+                </template>
+
+                <template x-if="showAll">
+                  <!-- Testimonial 9 -->
+                  <div
+                    class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                  >
+                    <div
+                      class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                    >
+                      <div>
+                        <img
+                          src="./assets/images/users/user-6.png"
+                          alt="Ralph Edwards"
+                          class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-gray-800 font-base dark:text-white/90">
+                          Devon Lane
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Binford Ltd.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03] d"
+                    >
+                      <p
+                        class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                      >
+                        As a Senior Software Developer I found TailAdmin perfect
+                        write code that easy can be used in my projects, which
+                        some are production already.
+                      </p>
+                    </div>
+                  </div>
+                </template>
+              </div>
+
+              <!-- Show More Button -->
+              <div class="mt-8 text-center relative z-10">
+                <button
+                  @click="showAll = !showAll"
+                  class="inline-flex items-center dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 px-6 py-3.5 text-sm font-medium text-gray-800 bg-white border border-gray-200 dark:hover:bg-gray-900 rounded-full shadow-theme-xs hover:bg-gray-50 focus:outline-none"
+                >
+                  <span x-text="showAll ? 'Show less...' : 'Show more...'"
+                    >Show more...</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <template x-if="!showAll">
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 180px; pointer-events: none; z-index: 20; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #f9fafb 80%, #f9fafb 100%);"></div>
+          </template>
+        </section>
+        <!-- Testimonial End -->
+
+        <!-- Price Start -->
+        <section
+          class="py-14 md:py-28 bg-gray-50 overflow-hidden dark:bg-white/[0.03]"
+        >
+          <div class="wrapper">
+            <div class="max-w-2xl mx-auto mb-12 text-center">
+              <h2
+                class="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg"
+              >
+                StashOffer ile Pazar Araştırmasına Başlayın
+              </h2>
+              <p
+                class="max-w-xl mx-auto leading-6 text-gray-500 dark:text-gray-400"
+              >
+                AI destekli pazar araştırması ajanımız ile işletmeniz için en uygun 
+                fırsatları keşfedin ve stratejik kararlar alın.
+              </p>
+            </div>
+
+            <div x-data="{ annual: false }">
+              <!-- Billing Toggle -->
+              <div class="flex justify-center relative z-30 mt-12">
+                <div
+                  class="relative flex p-1 bg-white dark:bg-dark-primary rounded-full shadow-theme-xs"
+                >
+                  <button
+                    @click="annual = false"
+                    :class="!annual ? 'bg-gray-800 dark:bg-white/[0.05]  text-white' : 'bg-transparent  dark:text-gray-400 text-gray-700'"
+                    class="relative px-6 py-2 text-sm font-medium transition-colors duration-200 rounded-full"
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    @click="annual = true"
+                    class="relative flex items-center pl-6 pr-2 py-2 text-sm font-medium transition-colors duration-200 rounded-full"
+                    :class="annual ? 'bg-gray-800 text-white dark:bg-white/[0.05]' : 'bg-transparent text-gray-700 dark:text-gray-400'"
+                  >
+                    Annually
+                    <span
+                      class="ml-2 bg-orange-400 text-white text-xs px-2 py-0.5 rounded-full"
+                      >Save 20%</span
+                    >
+                  </button>
+                </div>
+              </div>
+
+              <div class="relative">
+                <!-- Pricing Cards -->
+                <div
+                  class="mt-12 z-30 relative space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-6xl lg:mx-auto lg:grid-cols-4"
+                >
+                  <!-- Free Tier -->
+                  <div
+                    class="bg-white dark:bg-dark-primary rounded-[20px] shadow-one"
+                  >
+                    <div class="p-8">
+                      <h2
+                        class="text-lg font-semibold text-gray-800 dark:text-gray-400"
+                      >
+                        Başlangıç
+                      </h2>
+                      <p class="flex items-baseline mt-4">
+                        <span
+                          class="text-4xl font-semibold text-gray-800 dark:text-white/90"
+                          >₺0</span
+                        >
+                        <span
+                          class="ml-1 text-sm font-normal text-gray-500 dark:text-gray-400"
+                          >Aylık</span
+                        >
+                      </p>
+                      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                        Küçük işletmeler için temel pazar araştırması özellikleri.
+                      </p>
+                      <button
+                        class="block w-full px-8 py-3.5 dark:bg-dark-primary dark:text-white/90 transition dark:hover:bg-gray-800 dark:border-gray-800 mt-7 text-sm font-medium text-center text-gray-800 cursor-pointer bg-white border border-gray-200 rounded-full hover:bg-gray-50"
+                      >
+                        Try it for free
+                      </button>
+                    </div>
+                    <div class="px-8 pb-7">
+                      <ul class="space-y-3">
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 text-gray-500 dark:text-gray-400"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Temel pazar araştırması özellikleri
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 text-gray-500 dark:text-gray-400"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            5 pazar araştırması raporu
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 text-gray-500 dark:text-gray-400"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            3 proje sınırı
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 text-gray-500 dark:text-gray-400"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            E-posta desteği
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Plus Plan -->
+                  <div
+                    class="bg-white dark:bg-dark-primary relative border-2 border-primary-500 rounded-[20px] shadow-one"
+                  >
+                    <div class="p-8">
+                      <div class="flex items-center justify-between">
+                        <h2
+                          class="text-lg font-semibold text-gray-800 dark:text-gray-400"
+                        >
+                          Profesyonel
+                        </h2>
+                        <span
+                          class="px-2 py-1 text-xs font-medium dark:text-pir rounded-full dark:bg-primary-500/15 bg-primary-50 text-primary-500"
+                        >
+                          Popüler
+                        </span>
+                      </div>
+                      <p class="flex items-baseline mt-4">
+                        <span
+                          class="text-4xl font-semibold text-gray-800 dark:text-white/90"
+                          x-text="annual ? '₺1600' : '₺200'"
+                        ></span>
+                        <span
+                          class="ml-1 text-sm text-gray-500 dark:text-gray-400"
+                          x-text="annual ? 'Yıllık' : 'Aylık'"
+                        >
+                        </span>
+                      </p>
+                      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                        Orta ölçekli işletmeler için gelişmiş pazar araştırması özellikleri.
+                      </p>
+                      <button
+                        class="block w-full gradient-btn px-8 py-3.5 mt-7 text-sm font-medium text-center text-white rounded-full"
+                      >
+                        Purchase Now
+                      </button>
+                    </div>
+                    <div class="px-8 pb-7">
+                      <ul class="space-y-3">
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Başlangıç planının tüm özellikleri
+                          </p>
+                        </li>
+                        <li
+                          class="flex items-start dark:text-gray-400 text-gray-500"
+                        >
+                          <div class="flex-shrink-0">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            50 pazar araştırması raporu
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Sınırsız proje
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Gelişmiş AI analizi
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Rekabet analizi
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Öncelikli destek
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Pro Plan -->
+                  <div
+                    class="bg-white rounded-[20px] dark:bg-dark-primary shadow-one"
+                  >
+                    <div class="p-8">
+                      <h2
+                        class="text-lg font-semibold text-gray-800 dark:text-gray-400"
+                      >
+                        Kurumsal
+                      </h2>
+                      <p class="flex items-baseline mt-4">
+                        <span
+                          class="text-4xl font-semibold text-gray-800 dark:text-white/90"
+                          x-text="annual ? '₺2400' : '₺300'"
+                        ></span>
+                        <span
+                          class="ml-1 text-sm text-gray-500 dark:text-gray-400"
+                          x-text="annual ? 'Yıllık' : 'Aylık'"
+                        >
+                        </span>
+                      </p>
+                      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                        Büyük işletmeler için kapsamlı pazar araştırması çözümleri.
+                      </p>
+                      <button
+                        class="block w-full dark:hover:bg-primary-500 transition dark:bg-white/[0.05] hover:bg-gray-900 px-8 py-3.5 mt-6 text-sm font-medium text-center rounded-full text-white bg-gray-700"
+                      >
+                        Purchase Now
+                      </button>
+                    </div>
+                    <div class="px-8 pb-7">
+                      <ul class="space-y-3">
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Profesyonel planın tüm özellikleri
+                          </p>
+                        </li>
+                        <li
+                          class="flex items-start dark:text-gray-400 text-gray-500"
+                        >
+                          <div class="flex-shrink-0">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Sınırsız pazar araştırması raporu
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Sınırsız proje
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Özel AI modeli entegrasyonu
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Gelişmiş veri analizi
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            7/24 öncelikli destek
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Enterprise Plan -->
+                  <div
+                    class="bg-white rounded-[20px] dark:bg-dark-primary shadow-one"
+                  >
+                    <div class="p-8">
+                      <h2
+                        class="text-lg font-semibold text-gray-800 dark:text-gray-400"
+                      >
+                        Özel Çözüm
+                      </h2>
+                      <p class="flex items-baseline mt-4">
+                        <span
+                          class="text-4xl font-semibold text-gray-800 dark:text-white/90"
+                          >Görüşelim</span
+                        >
+                      </p>
+                      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                        Büyük şirketler için özel pazar araştırması çözümleri.
+                      </p>
+                      <button
+                        class="block dark:hover:bg-primary-500 w-full px-8 transition dark:bg-white/[0.03] hover:bg-gray-900 py-3.5 mt-6 text-sm font-medium text-center rounded-full text-white bg-gray-700"
+                      >
+                        Contact Sales
+                      </button>
+                    </div>
+                    <div class="px-8 pb-7">
+                      <ul class="space-y-3">
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Kurumsal planın tüm özellikleri
+                          </p>
+                        </li>
+                        <li
+                          class="flex items-start dark:text-gray-400 text-gray-500"
+                        >
+                          <div class="flex-shrink-0">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Özel AI modeli geliştirme
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Özel entegrasyonlar
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Open AI Key Integration
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Unlimited Words
+                          </p>
+                        </li>
+                        <li class="flex items-start">
+                          <div
+                            class="flex-shrink-0 dark:text-gray-400 text-gray-500"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="17"
+                              viewBox="0 0 16 17"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.4017 5.2793L6.12172 12.5593L2.59839 9.036"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </div>
+                          <p
+                            class="ml-2 text-sm text-gray-800 dark:text-white/90"
+                          >
+                            Consistent support
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute hidden lg:block top-0 z-10">
+                  <svg
+                    width="1099"
+                    height="960"
+                    viewBox="0 0 1099 960"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g opacity="0.2" filter="url(#filter0_f_9282_10364)">
+                      <circle
+                        cx="479.835"
+                        cy="480.254"
+                        r="179.665"
+                        fill="#FF58D5"
+                      />
+                    </g>
+                    <g opacity="0.1" filter="url(#filter1_f_9282_10364)">
+                      <circle
+                        cx="619.165"
+                        cy="480.254"
+                        r="179.665"
+                        fill="#4E6EFF"
+                      />
+                    </g>
+                    <defs>
+                      <filter
+                        id="filter0_f_9282_10364"
+                        x="0.169678"
+                        y="0.589355"
+                        width="959.33"
+                        height="959.33"
+                        filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB"
+                      >
+                        <feFlood
+                          flood-opacity="0"
+                          result="BackgroundImageFix"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="150"
+                          result="effect1_foregroundBlur_9282_10364"
+                        />
+                      </filter>
+                      <filter
+                        id="filter1_f_9282_10364"
+                        x="139.5"
+                        y="0.589355"
+                        width="959.33"
+                        height="959.33"
+                        filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB"
+                      >
+                        <feFlood
+                          flood-opacity="0"
+                          result="BackgroundImageFix"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="150"
+                          result="effect1_foregroundBlur_9282_10364"
+                        />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Price End -->
+
+        <!-- Faq Start -->
+        <section class="py-14 md:py-28">
+          <div class="wrapper">
+            <div class="max-w-2xl mx-auto mb-12 text-center">
+              <h2
+                class="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg"
+              >
+                Frequently Asked Questions
+              </h2>
+              <p
+                class="max-w-md mx-auto leading-6 text-gray-500 dark:text-gray-400"
+              >
+                Answered all frequently asked questions, Still confused? feel
+                free contact with us
+              </p>
+            </div>
+            <div class="max-w-[600px] mx-auto">
+              <!-- Parent component with shared state -->
+              <div class="space-y-4" x-data="{ activeItem: 1 }">
+                <!-- FAQ Item 1 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 1 ? null : 1"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >Do I get free updates?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 1"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="#98A2B3"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="white"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 1"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div class="mt-5" x-show="activeItem === 1">
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Aenean luctus magna quis tellus euismod, eget pharetra leo
+                      mollis. Donec eget lacus non elit blandit pharetra vitae
+                      volutpat libero.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 2 ? null : 2"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >What does the number of "Projects" refer to?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 2"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 2"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 2"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      The number of "Projects" refers to the total number of
+                      separate workspaces you can create and manage within your
+                      account. Each project can have its own settings, team
+                      members, and resources.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 3 ? null : 3"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white"
+                      >Can I upgrade to a higher plan?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 3"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 3"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 3"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      Yes, you can upgrade to a higher plan at any time. When
+                      you upgrade, you'll be charged the prorated difference for
+                      the remainder of your current billing cycle. Your new
+                      features will be available immediately after upgrading.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 4 ? null : 4"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >What does "Unlimited Projects" mean?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 4"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 4"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 4"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      "Unlimited Projects" means you can create as many projects
+                      as you need without any restrictions. This allows you to
+                      organize your work efficiently without worrying about
+                      hitting a project limit.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 5 ? null : 5"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >How can I add Open AI Key?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 5"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 5"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 5"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      To add your OpenAI API key, go to your account settings
+                      and navigate to the "API Keys" section. Click on "Add New
+                      Key", paste your OpenAI API key, and save your changes.
+                      The key will be securely stored and used for all
+                      AI-powered features.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Faq End -->
+      </main>
+      <!-- Main End -->
+
+      <!-- Footer Start -->
+      <footer class="relative overflow-hidden bg-gray-900">
+        <span class="absolute top-0 -translate-x-1/2 left-1/2">
+          <svg
+            width="1260"
+            height="457"
+            viewBox="0 0 1260 457"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_f_11105_867)">
+              <circle cx="630" cy="-173.299" r="230" fill="#3B2EFF" />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_11105_867"
+                x="0"
+                y="-803.299"
+                width="1260"
+                height="1260"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="200"
+                  result="effect1_foregroundBlur_11105_867"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </span>
+        <div class="relative z-10 py-16 xl:py-24">
+          <div class="container px-5 mx-auto sm:px-7">
+            <div class="grid gap-y-8 lg:grid-cols-12">
+              <div class="lg:col-span-3 xl:col-span-4">
+                <div>
+                  <a href="index.html" class="block mb-6">
+                    <img src="./assets/images/logo-white.svg" alt="AI UI Kit Logo" />
+                  </a>
+                  <p class="block text-sm text-gray-400 mb-9">
+                    AI destekli pazar araştırması ajanımız ile işletmeniz için </br> en uygun fırsatları keşfedin ve stratejik kararlar alın.
+                  </p>
+                  <div class="flex">
+                    <a
+                      href="https://www.linkedin.com/company/pimjo/posts/?feedView=all"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_11105_879)">
+                          <path
+                            d="M13.5447 3.68965C12.5249 3.22173 11.4313 2.87699 10.2879 2.67954C10.2671 2.67573 10.2463 2.68525 10.2356 2.7043C10.0949 2.95444 9.93915 3.28077 9.83006 3.53727C8.60027 3.35316 7.37679 3.35316 6.17221 3.53727C6.0631 3.27507 5.90166 2.95444 5.76038 2.7043C5.74966 2.68589 5.72886 2.67636 5.70803 2.67954C4.56527 2.87636 3.47171 3.2211 2.45129 3.68965C2.44246 3.69346 2.43488 3.69982 2.42986 3.70806C0.355594 6.80697 -0.212634 9.82971 0.0661201 12.815C0.0673814 12.8296 0.0755799 12.8435 0.086932 12.8524C1.45547 13.8574 2.78114 14.4676 4.08219 14.872C4.10301 14.8784 4.12507 14.8707 4.13832 14.8536C4.44608 14.4333 4.72043 13.9902 4.95565 13.5241C4.96953 13.4968 4.95628 13.4645 4.92791 13.4537C4.49275 13.2886 4.0784 13.0873 3.67982 12.8588C3.64829 12.8404 3.64577 12.7953 3.67477 12.7737C3.75865 12.7108 3.84255 12.6454 3.92264 12.5794C3.93713 12.5674 3.95732 12.5648 3.97435 12.5724C6.59286 13.7679 9.4277 13.7679 12.0153 12.5724C12.0323 12.5642 12.0525 12.5667 12.0677 12.5788C12.1478 12.6448 12.2316 12.7108 12.3161 12.7737C12.3451 12.7953 12.3433 12.8404 12.3117 12.8588C11.9131 13.0918 11.4988 13.2886 11.063 13.453C11.0346 13.4638 11.022 13.4968 11.0359 13.5241C11.2762 13.9895 11.5505 14.4327 11.8526 14.853C11.8652 14.8707 11.8879 14.8784 11.9087 14.872C13.2161 14.4676 14.5417 13.8574 15.9103 12.8524C15.9223 12.8435 15.9298 12.8302 15.9311 12.8156C16.2647 9.36431 15.3723 6.36636 13.5655 3.7087C13.5611 3.69982 13.5535 3.69346 13.5447 3.68965ZM5.34668 10.9973C4.55833 10.9973 3.90876 10.2735 3.90876 9.38464C3.90876 8.49578 4.54574 7.77202 5.34668 7.77202C6.15392 7.77202 6.79721 8.50214 6.78459 9.38464C6.78459 10.2735 6.14761 10.9973 5.34668 10.9973ZM10.6632 10.9973C9.87484 10.9973 9.22526 10.2735 9.22526 9.38464C9.22526 8.49578 9.86222 7.77202 10.6632 7.77202C11.4704 7.77202 12.1137 8.50214 12.1011 9.38464C12.1011 10.2735 11.4704 10.9973 10.6632 10.9973Z"
+                            fill="currentColor"
+                            fill-opacity="0.8"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_11105_879">
+                            <rect
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              transform="translate(0 0.919434)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://x.com/PimjoHQ"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <path
+                          d="M12.2176 2.18848H14.4666L9.55323 7.80414L15.3334 15.4458H10.8076L7.26277 10.8112L3.20671 15.4458H0.956369L6.2117 9.43921L0.666748 2.18848H5.30749L8.51168 6.4247L12.2176 2.18848ZM11.4283 14.0997H12.6745L4.63034 3.4639H3.29306L11.4283 14.0997Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://github.com/PIMJO"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_11105_885)">
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M8.00009 1.25293C6.10091 1.25392 4.264 1.92657 2.81783 3.15061C1.37166 4.37465 0.410521 6.07027 0.106282 7.93426C-0.197957 9.79825 0.174536 11.7091 1.15717 13.325C2.13979 14.941 3.66848 16.1568 5.46987 16.7549C5.86729 16.8287 6.01698 16.5824 6.01698 16.3729C6.01698 16.1635 6.00903 15.5563 6.00638 14.8924C3.78085 15.3732 3.31057 13.9533 3.31057 13.9533C2.9476 13.0312 2.42301 12.7889 2.42301 12.7889C1.69706 12.2962 2.47733 12.3054 2.47733 12.3054C3.28143 12.3621 3.70402 13.1261 3.70402 13.1261C4.41672 14.3418 5.57585 13.9901 6.03155 13.7847C6.10309 13.2696 6.31107 12.9193 6.54025 12.7204C4.76247 12.5202 2.89461 11.8378 2.89461 8.78988C2.88359 7.9994 3.1786 7.23496 3.71859 6.65472C3.63646 6.4545 3.36224 5.64575 3.79675 4.54722C3.79675 4.54722 4.46839 4.33383 5.99712 5.36256C7.30836 5.00601 8.69183 5.00601 10.0031 5.36256C11.5305 4.33383 12.2008 4.54722 12.2008 4.54722C12.6366 5.64312 12.3624 6.45187 12.2803 6.65472C12.822 7.23506 13.1176 8.00083 13.1056 8.79251C13.1056 11.8471 11.2337 12.5202 9.45331 12.7164C9.73945 12.964 9.99512 13.4475 9.99512 14.1903C9.99512 15.2546 9.98585 16.1108 9.98585 16.3729C9.98585 16.585 10.1302 16.8326 10.5356 16.7549C12.3372 16.1567 13.866 14.9407 14.8487 13.3245C15.8313 11.7082 16.2036 9.79713 15.899 7.93296C15.5944 6.0688 14.6328 4.37317 13.1861 3.14933C11.7395 1.9255 9.90215 1.25329 8.00274 1.25293H8.00009Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.02954 12.6743C3.01232 12.7139 2.94873 12.7257 2.89707 12.6981C2.84541 12.6704 2.80699 12.619 2.82554 12.5782C2.84408 12.5374 2.90635 12.5268 2.95801 12.5545C3.00967 12.5821 3.04941 12.6348 3.02954 12.6743Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.35423 13.0339C3.3268 13.0476 3.29541 13.0514 3.26545 13.0447C3.23548 13.038 3.2088 13.0211 3.18997 12.997C3.13831 12.9417 3.1277 12.8653 3.16744 12.831C3.20719 12.7968 3.27873 12.8126 3.33039 12.8679C3.38205 12.9232 3.39398 12.9996 3.35423 13.0339Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.66958 13.4908C3.62056 13.525 3.5371 13.4908 3.49074 13.4223C3.47791 13.41 3.46772 13.3953 3.46075 13.379C3.45379 13.3627 3.4502 13.3452 3.4502 13.3275C3.4502 13.3098 3.45379 13.2922 3.46075 13.2759C3.46772 13.2596 3.47791 13.2449 3.49074 13.2326C3.53975 13.1997 3.62321 13.2326 3.66958 13.2998C3.71594 13.367 3.71727 13.4565 3.66958 13.4908Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M4.09725 13.9334C4.05353 13.9822 3.96478 13.969 3.89192 13.9031C3.81906 13.8373 3.80183 13.7477 3.84555 13.7003C3.88926 13.6529 3.97802 13.666 4.05353 13.7306C4.12904 13.7951 4.14361 13.886 4.09725 13.9334Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M4.69753 14.1917C4.67766 14.2536 4.58758 14.2813 4.4975 14.2549C4.40742 14.2286 4.3478 14.1548 4.36502 14.0916C4.38225 14.0284 4.47365 13.9994 4.56506 14.0284C4.65646 14.0573 4.71475 14.1271 4.69753 14.1917Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M5.35189 14.2361C5.35189 14.3006 5.27771 14.3559 5.18233 14.3572C5.08695 14.3586 5.00879 14.3059 5.00879 14.2413C5.00879 14.1768 5.08297 14.1215 5.17835 14.1201C5.27373 14.1188 5.35189 14.1702 5.35189 14.2361Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M5.96118 14.1349C5.9731 14.1994 5.90687 14.2666 5.81149 14.2824C5.71611 14.2982 5.63265 14.26 5.62073 14.1968C5.60881 14.1336 5.67769 14.0651 5.77042 14.0479C5.86315 14.0308 5.94926 14.0703 5.96118 14.1349Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_11105_885">
+                            <rect
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              transform="translate(0 0.919434)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.facebook.com/PimjoHQ"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="19"
+                        viewBox="0 0 18 19"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_11105_895)">
+                          <path
+                            d="M10.5 11.0444H12.375L13.125 8.04443H10.5V6.54443C10.5 5.7724 10.5 5.04443 12 5.04443H13.125V2.52451C12.8807 2.49207 11.9573 2.41943 10.9822 2.41943C8.9463 2.41943 7.5 3.66208 7.5 5.94422V8.04443H5.25V11.0444H7.5V17.4194H10.5V11.0444Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_11105_895">
+                            <rect
+                              width="18"
+                              height="18"
+                              fill="currentColor"
+                              transform="translate(0 0.919434)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-6 xl:col-span-5">
+                <div class="grid sm:grid-cols-3 gap-7">
+                  <div>
+                    <span class="block mb-6 text-sm text-gray-400"
+                      >Hizmetler</span
+                    >
+                    <nav class="flex flex-col space-y-3">
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Durum
+                      </a>
+                      <a
+                        href="pricing.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Fiyatlandırma
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        SSS
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Yardım Dokümanları
+                      </a>
+                      <a
+                        href="privacy.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Gizlilik Politikası
+                      </a>
+                    </nav>
+                  </div>
+                  <div>
+                    <span class="block mb-6 text-sm text-gray-400"
+                      >Özellikler</span
+                    >
+                    <nav class="flex flex-col space-y-3">
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        AI Pazar Araştırması
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Rekabet Analizi
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Hedef Kitle Analizi
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Pazar Trendleri
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Detaylı Raporlama
+                      </a>
+                    </nav>
+                  </div>
+                  <div>
+                    <span class="relative block mb-6 text-sm text-gray-400"
+                      >Hesap</span
+                    >
+                    <nav class="flex flex-col space-y-3">
+                      <a
+                        href="signin.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Giriş Yap
+                      </a>
+                      <a
+                        href="signup.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Kayıt Ol
+                      </a>
+                      <a
+                        href="forgot-password.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Şifre Sıfırla
+                      </a>
+                      <a
+                        href="contact.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Destek
+                      </a>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-3">
+                <div>
+                  <span class="block mb-6 text-sm text-gray-400"
+                    >İletişimde Kalın</span
+                  >
+                  <p class="block mb-5 text-sm text-gray-400">
+                    özel içgörüler ve teklifler için şimdi abone olun!
+                  </p>
+                  <form>
+                    <div
+                      class="flex flex-col items-center gap-2 w-full sm:max-w-64"
+                    >
+                      <input
+                        type="text"
+                        placeholder="E-posta adresinizi girin"
+                        class="w-full h-12 p-4 text-sm text-white border border-gray-700 rounded-full placeholder:text-center placeholder:text-gray-400 placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
+                      />
+                      <button
+                        class="w-full px-6 py-3 text-sm font-medium text-white transition rounded-full cursor-pointer bg-primary-500 hover:bg-primary-600"
+                      >
+                        Şimdi Abone Ol
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800">
+          <div class="container relative z-10 px-5 mx-auto sm:px-7">
+            <div
+              class="py-5 text-center"
+              x-data="{ currentYear: new Date().getFullYear() }"
+            >
+              <p class="text-sm text-gray-500">
+                &copy; <span x-text="currentYear"></span> StashOffer - Tüm Hakları Saklıdır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer End -->
+    </div>
+
+    <script defer src="./assets/js/alpine.min.js"></script>
+    <script defer src="./assets/js/glightbox.min.js"></script>
+    <script defer src="./assets/js/app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"95aeeb25be29d21d","version":"2025.6.2","r":1,"token":"9a6015d415bb4773a0bff22543062d3b","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>
