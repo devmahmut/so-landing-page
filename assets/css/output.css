@@ -1499,6 +1499,9 @@
   .text-error-600 {
     color: var(--color-error-600);
   }
+  .text-gray-50 {
+    color: var(--color-gray-50);
+  }
   .text-gray-400 {
     color: var(--color-gray-400);
   }
