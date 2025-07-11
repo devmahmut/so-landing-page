@@ -1,44 +1,78 @@
-# SO Landing Page
+# StashOffer Landing Page
 
-Modern ve responsive bir landing page projesi.
+A modern, responsive landing page for StashOffer - AI-Powered Market Research Agent.
 
-## Özellikler
+## Features
 
-- Responsive tasarım
-- Modern UI/UX
-- Alpine.js ile interaktif bileşenler
-- GLightbox ile görsel galeri
-- Tailwind CSS ile stil
+- 🚀 Modern and responsive design
+- 🌙 Dark/Light mode toggle
+- 📱 Mobile-friendly interface
+- 🎨 Beautiful UI with Tailwind CSS
+- ⚡ Fast loading with optimized assets
 
-## Dosya Yapısı
+## Docker Usage
 
-```
-so_landing_page/
-├── assets/
-│   ├── css/
-│   ├── images/
-│   └── js/
-├── index.html
-└── README.md
-```
+### Pull and Run
 
-## Kurulum
-
-1. Projeyi klonlayın:
 ```bash
-git clone [repository-url]
-cd so_landing_page
+# Pull the latest image
+docker pull devmahmut/so-landing-page:latest
+
+# Run the container
+docker run -d -p 8080:80 --name stashoffer-landing devmahmut/so-landing-page:latest
 ```
 
-2. `index.html` dosyasını bir web tarayıcısında açın.
+### Access the Website
 
-## Teknolojiler
+Once the container is running, you can access the website at:
+- **Local**: http://localhost:8080
+- **Network**: http://your-ip:8080
+
+### Stop and Remove Container
+
+```bash
+# Stop the container
+docker stop stashoffer-landing
+
+# Remove the container
+docker rm stashoffer-landing
+```
+
+## Development
+
+### Local Development
+
+1. Clone the repository
+2. Open `index.html` in your browser
+3. Or use a local server:
+   ```bash
+   python -m http.server 8000
+   # or
+   npx serve .
+   ```
+
+### Build Docker Image
+
+```bash
+# Build the image
+docker build -t devmahmut/so-landing-page:latest .
+
+# Push to Docker Hub
+docker push devmahmut/so-landing-page:latest
+```
+
+## Technologies Used
 
 - HTML5
 - CSS3 (Tailwind CSS)
 - JavaScript (Alpine.js)
-- GLightbox
+- Docker
+- Nginx
 
-## Lisans
+## License
 
-Bu proje MIT lisansı altında lisanslanmıştır. 
+This project is proprietary and confidential.
+
+---
+
+**StashOffer** - Transform your vision into reality with our powerful AI UI Kit. 
