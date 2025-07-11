@@ -1,7 +1,5 @@
 # StashOffer Landing Page
 
-A modern, responsive landing page for StashOffer - AI-Powered Market Research Agent.
-
 ## Features
 
 - 🚀 Modern and responsive design
@@ -71,8 +69,4 @@ docker push devmahmut/so-landing-page:latest
 
 ## License
 
-This project is proprietary and confidential.
-
----
-
-**StashOffer** - Transform your vision into reality with our powerful AI UI Kit. 
+This project is proprietary and confidential. 
