@@ -1,0 +1,17 @@
+{
+  "name": "so-landing-page",
+  "version": "1.0.0",
+  "description": "StashOffer Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve ."
+  },
+  "keywords": ["landing-page", "static-site"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+} 

@@ -1,0 +1,2477 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Transform your vision into reality with our powerful AI UI Kit. Build cutting-edge AI startups, tools, and products with modern templates for Tailwind CSS and Figma."
+    />
+    <meta
+      name="keywords"
+      content="AI UI Kit, Tailwind CSS, Figma, AI Tools, AI Templates, AI Startups"
+    />
+    <link rel="icon" href="./assets/images/favicon.png" />
+    <link href="./assets/css/glightbox.css" rel="stylesheet" />
+    <link href="./assets/css/output.css" rel="stylesheet" />
+    <title>StashOffer</title>
+    <style>
+      /* Sadece solutions.html için gradient ve buton renk override'ı */
+      .gradient-btn {
+        background: linear-gradient(90deg, #4E71FF 0%, #7A5AF8 100%) !important;
+        color: #fff !important;
+        border: none !important;
+      }
+      .gradient-btn:hover {
+        background: linear-gradient(90deg, #3B54D6 0%, #5A3DF8 100%) !important;
+        color: #fff !important;
+      }
+      .gradient-border {
+        background: linear-gradient(90deg, #4E71FF 0%, #7A5AF8 100%) !important;
+      }
+      .gradient-bg-two {
+        background: linear-gradient(135deg, #4E71FF 0%, #7A5AF8 100%) !important;
+        color: #fff !important;
+      }
+      .bg-primary-500, .hover\:bg-primary-600:hover, .bg-primary-600 {
+        background-color: #4E71FF !important;
+        color: #fff !important;
+      }
+      .text-primary-500 {
+        color: #4E71FF !important;
+      }
+      .border-primary-500 {
+        border-color: #4E71FF !important;
+      }
+      .bg-primary-50 {
+        background-color: #e6edff !important;
+      }
+      /* Badge ve diğer turuncu arka planlar için */
+      [style*="background: rgba(255, 174, 30"], [style*="color: #ffae1e"], [style*="color: #FFA0E7"], [style*="color: #FF58D5"] {
+        background: rgba(78, 113, 255, 0.16) !important;
+        color: #4E71FF !important;
+      }
+      /* Fiyat kartı badge */
+      .bg-orange-400, .bg-orange-400:hover {
+        background-color: #4E71FF !important;
+        color: #fff !important;
+      }
+    </style>
+  </head>
+  <body
+    x-data="{      
+       mobileMenuOpen: false,
+        activeDropdown: null,
+  darkMode: localStorage.getItem('darkMode') === 'true',
+  toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          localStorage.setItem('darkMode', this.darkMode);
+          
+          if (this.darkMode) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        },
+        toggleDropdown(dropdown) {
+          if (window.innerWidth < 1024) {
+            this.activeDropdown = this.activeDropdown === dropdown ? null : dropdown;
+          }
+        },
+        closeDropdowns() {
+          this.activeDropdown = null;
+        },
+        init() {
+          // Apply dark mode on page load if saved in localStorage
+          const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+          
+          if (savedDarkMode) {
+            this.darkMode = true;
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            this.darkMode = false;
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+          
+          // Close dropdowns when clicking outside
+          document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item') && !e.target.closest('.dropdown-menu') && !e.target.closest('.mobile-dropdown-toggle')) {
+              this.closeDropdowns();
+            }
+          });
+          
+          // Reset activeDropdown when resizing to desktop
+          window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+              this.activeDropdown = null;
+              this.mobileMenuOpen = false;
+            }
+          });
+        }
+      }"
+  >
+    <div class="dark:bg-dark-primary">
+      <!-- Header Start -->
+      <header
+        class="bg-white dark:bg-dark-primary border-b dark:border-gray-800 border-gray-100 sticky top-0 z-50 py-4 lg:py-0"
+      >
+        <div class="px-4 sm:px-6 lg:px-7">
+          <div class="flex items-center justify-between">
+            <!-- Logo and Mobile Menu Button -->
+            <div class="flex items-center">
+              <!-- Logo -->
+              <a href="index.html">
+                <img
+                  src="./assets/images/logo-black.svg"
+                  class="block dark:hidden"
+                  alt="StashOffer's Logo"
+                  style="max-width: 300px"
+                />
+                <img
+                  src="./assets/images/logo-white.svg"
+                  class="hidden dark:block"
+                  alt="StashOffer's Logo"
+                  style="max-width: 300px"
+                />
+              </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex lg:items-center">
+              <a
+                href="index.html"
+                class="text-gray-800 dark:text-white/90 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Home</a
+              >
+              <a
+                href="solutions.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Business Solutions</a
+              >
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Resources</a
+              >
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Company</a
+              >
+
+              <a
+                href="index.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Blog</a
+              >
+
+              <a
+                href="contact.html"
+                class="text-gray-500 dark:text-gray-400 text-sm px-4 py-6 hover:text-primary-500 font-medium"
+                >Contact Us</a
+              >
+            </nav>
+
+            <!-- Right side buttons -->
+            <div class="flex items-center gap-4">
+              <!-- Theme toggle -->
+              <button
+                @click="toggleDarkMode()"
+                class="inline-flex items-center dark:hover:bg-white/5 dark:hover:text-white/90 hover:bg-gray-100 hover:text-gray-800 text-gray-500 dark:text-gray-400 justify-center border border-gray-200 dark:border-gray-700 rounded-full size-11"
+              >
+                <svg
+                  x-show="!darkMode"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M6.24683 7.08492C6.24683 10.7677 9.23232 13.7532 12.9151 13.7532C14.6687 13.7532 16.2641 13.0764 17.4545 11.9697C16.584 15.2727 13.5765 17.7083 10.0001 17.7083C5.74289 17.7083 2.29175 14.2572 2.29175 9.99996C2.29175 6.42356 4.72736 3.41602 8.03036 2.54558C6.92367 3.73594 6.24683 5.33139 6.24683 7.08492Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  x-show="darkMode"
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </button>
+              <!-- Mobile menu button -->
+              <button
+                @click.stop="mobileMenuOpen = !mobileMenuOpen"
+                type="button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 lg:hidden"
+              >
+                <span class="sr-only">Open main menu</span>
+                <svg
+                  class="h-6 w-6"
+                  x-show="!mobileMenuOpen"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+                <svg
+                  class="h-6 w-6"
+                  x-show="mobileMenuOpen"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <!-- Sign In button (desktop) -->
+              <a
+                href="signin.html"
+                class="text-sm hidden lg:block font-medium text-gray-700 dark:text-gray-400 hover:text-primary-500"
+                >Sign In</a
+              >
+              <button
+                onclick="window.location.href='signup.html'"
+                class="lg:inline-flex items-center px-5 py-3 gradient-btn hidden text-sm text-white rounded-full button-bg h-11"
+              >
+                Get Started Free
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div
+          x-show="mobileMenuOpen"
+          x-cloak
+          class="lg:hidden absolute bg-white dark:bg-dark-primary w-full border-b border-gray-200 dark:border-gray-800"
+        >
+          <div class="pt-2 pb-3 space-y-1 px-4 sm:px-6">
+            <a
+              href="index.html"
+              class="block px-3 py-2 rounded-md text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Home
+            </a>
+
+            <!-- Products Dropdown (Mobile) -->
+            <div>
+              <button
+                @click.stop="toggleDropdown('products')"
+                class="mobile-dropdown-toggle flex justify-between items-center w-full px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <span>Products</span>
+                <svg
+                  class="h-4 w-4 transition-transform duration-200"
+                  :class="{'transform rotate-180': activeDropdown === 'products'}"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Pages Dropdown (Mobile) -->
+            <div>
+              <button
+                @click.stop="toggleDropdown('pages')"
+                class="mobile-dropdown-toggle flex justify-between items-center w-full px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <span>Pages</span>
+                <svg
+                  class="h-4 w-4 transition-transform duration-200"
+                  :class="{'transform rotate-180': activeDropdown === 'pages'}"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <a
+              href="contact.html"
+              class="block px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Contact
+            </a>
+
+            <!-- Mobile-only buttons -->
+            <div class="px-3">
+              <a
+                href="signin.html"
+                class="text-sm block py-3 font-medium text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white/90"
+              >
+                Sign In
+              </a>
+              <button
+                onclick="window.location.href='contact.html'"
+                class="inline-flex gradient-btn items-center px-5 py-3 text-sm text-white rounded-full button-bg h-11"
+              >
+                Get Started Free
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Header End -->
+
+      <!-- Main Start -->
+      <main>
+        <!-- Hero Start -->
+        <section class="pt-16 relative overflow-hidden">
+          <div class="wrapper">
+            <div class="max-w-[800px] mx-auto">
+              <div class="text-center pb-16">
+                <div
+                  class="rounded-full mb-6 h-10 gradient-border inline-flex items-center"
+                >
+                  <div
+                    class="bg-white dark:bg-dark-primary py-2 text-sm items-center gap-2 px-5 inline-flex dark:text-white/90 rounded-full z-10 relative"
+                  >
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 22 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M15.1699 0.58575C14.9429 -0.19525 13.7499 -0.19525 13.5229 0.58575L13.2029 1.69275C12.5109 4.07875 11.5669 5.94175 8.99994 6.58375L7.80794 6.88175C7.63097 6.91697 7.47168 7.01246 7.35721 7.15195C7.24274 7.29144 7.18018 7.4663 7.18018 7.64675C7.18018 7.8272 7.24274 8.00206 7.35721 8.14155C7.47168 8.28104 7.63097 8.37653 7.80794 8.41175L8.99994 8.70975C11.5669 9.35275 12.5109 11.2157 13.2029 13.6007L13.5229 14.7078C13.7499 15.4897 14.9429 15.4897 15.1699 14.7078L15.4899 13.6007C16.1819 11.2157 17.1269 9.35275 19.6939 8.71075L20.8839 8.41175C21.0609 8.37653 21.2202 8.28104 21.3347 8.14155C21.4491 8.00206 21.5117 7.8272 21.5117 7.64675C21.5117 7.4663 21.4491 7.29144 21.3347 7.15195C21.2202 7.01246 21.0609 6.91697 20.8839 6.88175L19.6939 6.58375C17.1269 5.94175 16.1819 4.07875 15.4899 1.69375L15.1699 0.58575Z"
+                        fill="url(#paint0_linear_9274_1469)"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M5.28304 11.8368C5.14704 11.3488 4.43104 11.3488 4.29604 11.8368L4.10304 12.5288C3.68805 14.0188 3.12205 15.1838 1.58104 15.5858L0.867045 15.7718C0.759268 15.7971 0.663206 15.8581 0.594451 15.9448C0.525695 16.0316 0.488281 16.1391 0.488281 16.2498C0.488281 16.3605 0.525695 16.4679 0.594451 16.5547C0.663206 16.6415 0.759268 16.7025 0.867045 16.7278L1.58104 16.9148C3.12104 17.3158 3.68805 18.4808 4.10304 19.9708L4.29604 20.6628C4.43104 21.1518 5.14704 21.1518 5.28304 20.6628L5.47605 19.9708C5.89005 18.4808 6.45805 17.3158 7.99804 16.9148L8.71204 16.7278C8.81982 16.7025 8.91588 16.6415 8.98464 16.5547C9.05339 16.4679 9.09081 16.3605 9.09081 16.2498C9.09081 16.1391 9.05339 16.0316 8.98464 15.9448C8.91588 15.8581 8.81982 15.7971 8.71204 15.7718L7.99804 15.5858C6.45805 15.1848 5.89005 14.0198 5.47605 12.5288L5.28304 11.8368Z"
+                        fill="url(#paint1_linear_9274_1469)"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9274_1469"
+                          x1="7.18018"
+                          y1="0"
+                          x2="21.5117"
+                          y2="15.2943"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#FF58D5" />
+                          <stop offset="1" stop-color="#FFA0E7" />
+                        </linearGradient>
+                        <linearGradient
+                          id="paint1_linear_9274_1469"
+                          x1="9.09081"
+                          y1="11.4708"
+                          x2="0.488281"
+                          y2="21.0295"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#7A5AF8" />
+                          <stop offset="1" stop-color="#B5A2FF" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <p>Powerful AI Kit for AI Products, Tools and Startups</p>
+                  </div>
+                </div>
+                <h1
+                  class="text-gray-700 mx-auto font-bold mb-4 text-4xl sm:text-[50px] dark:text-white/90 sm:leading-[64px] max-w-[700px]"
+                >
+                  EasIer Offers, more CLIENTS, Less Effort.
+                </h1>
+                <p
+                  class="max-w-[537px] text-center mx-auto dark:text-gray-400 text-gray-500 text-base"
+                >
+                  We help businesses generate instant offers, manage their
+                  inventory with AI, and connect with more clients—24/7. All
+                  without the manual hassle.
+                </p>
+                <div
+                  class="mt-9 flex sm:flex-row flex-col gap-3 relative z-30 items-center justify-center"
+                >
+                  <a
+                    href="text-generator.html"
+                    class="bg-primary-500 transition h-12 inline-flex items-center justify-center hover:bg-primary-600 px-6 py-3 rounded-full text-white text-sm"
+                    >Get Started</a
+                  >
+                  <a
+                    href="https://www.youtube.com/watch?v=_iHmNaQBtKk"
+                    class="rounded-full video-popup flex h-12 gap-3 items-center text-sm border bg-white dark:bg-white/10 dark:border-white/[0.05] dark:text-white border-gray-100 p-1.5 pr-6"
+                  >
+                    <span
+                      class="size-9 rounded-full gradient-bg-two inline-flex items-center justify-center text-sm font-medium"
+                    >
+                      <svg
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.5 3.71077L3.5 12.3482C3.5 13.5211 4.78545 14.2402 5.78489 13.6265L12.8183 9.30776C13.7717 8.7223 13.7717 7.33672 12.8183 6.75125L5.7849 2.43251C4.78545 1.81882 3.5 2.53795 3.5 3.71077Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </span>
+                    Watch Intro
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="max-w-[1000px] mx-auto relative">
+              <div
+                class="p-3 sm:p-[18px] relative z-30 rounded-[32px] border border-white/30 dark:border-white/10 bg-white/20"
+              >
+                <img
+                  src="./assets/images/hero/hero-img.jpg"
+                  alt=""
+                  class="w-full rounded-2xl block dark:hidden"
+                />
+                <img
+                  src="./assets/images/hero/hero-img-dark.png"
+                  alt=""
+                  class="w-full rounded-2xl hidden dark:block"
+                />
+              </div>
+              <div
+                class="absolute hidden lg:block z-10 -top-20 -translate-y-20 left-1/2 -translate-x-1/2"
+              >
+                <svg
+                  width="1300"
+                  height="1001"
+                  viewBox="0 0 1300 1001"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g opacity="0.7" filter="url(#filter0_f_9279_7148)">
+                    <circle cx="800" cy="500.03" r="300" fill="#4E6EFF" />
+                  </g>
+                  <g opacity="0.3" filter="url(#filter1_f_9279_7148)">
+                    <circle cx="500" cy="500.03" r="300" fill="#FF58D5" />
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_f_9279_7148"
+                      x="300"
+                      y="0.029541"
+                      width="1000"
+                      height="1000"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="BackgroundImageFix"
+                        result="shape"
+                      />
+                      <feGaussianBlur
+                        stdDeviation="100"
+                        result="effect1_foregroundBlur_9279_7148"
+                      />
+                    </filter>
+                    <filter
+                      id="filter1_f_9279_7148"
+                      x="0"
+                      y="0.029541"
+                      width="1000"
+                      height="1000"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="BackgroundImageFix"
+                        result="shape"
+                      />
+                      <feGaussianBlur
+                        stdDeviation="100"
+                        result="effect1_foregroundBlur_9279_7148"
+                      />
+                    </filter>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+                      <div
+              class="w-full h-[670px] absolute z-10 bottom-0"
+              style="background: linear-gradient(to top, rgba(187, 198, 245, 1) 0%, rgba(187, 198, 245, 0.8) 30%, rgba(187, 198, 245, 0.4) 60%, rgba(187, 198, 245, 0) 100%)"
+            ></div>
+          <div class="hidden lg:block">
+            <img
+              src="./assets/images/hero/shape-left-1.svg"
+              class="absolute top-14 left-16 floating-1"
+              alt=""
+            />
+            <img
+              src="./assets/images/hero/shape-left-2.svg"
+              class="absolute top-[298px] floating-2"
+              style="left: 345px; width: 250px;"
+              alt=""
+            />
+            <img
+              src="./assets/images/hero/shape-right-1.svg"
+              class="absolute top-[108px] floating-3"
+              style="width: 200px; right: 200px;"
+              alt=""
+            />
+            
+          </div>
+        </section>
+
+        <!-- Hero End -->
+
+        <div class="w-full bg-white dark:bg-white/[0.01]">
+          <img
+            class="w-full"
+            src="./assets/images/clouds-blue-shape.svg"
+            alt="Clouds Shape Background"
+            style="transform: rotate(180deg);"
+          />
+        </div>
+
+        <!-- Core Feature Start -->
+
+          <div class="wrapper relative">
+            <div class="max-w-2xl mx-auto mb-12 text-center absolute" style="top: -150px; left: 50%; transform: translateX(-50%);">
+              <h2
+                class="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg"
+              >
+                How Our <span class="gradient-text">AI-Powered</span> Agent
+                Simplifies Sourcing — From Input to Instant Matches
+              </h2>
+              <p
+                class="max-w-xl mx-auto leading-6 text-gray-500 dark:text-gray-400"
+              >
+                "We will protect your personal information and will not share it
+                with any businesses without your consent"
+              </p>
+            </div>
+          </div>
+        <!-- Core Feature End -->
+
+        <!-- Tab Start -->
+        <section class="py-14 md:py-28 dark:bg-dark-primary bg-white">
+          <div class="wrapper">
+            <div
+              class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center"
+            >
+              <!-- Left: Image -->
+              <div class="flex justify-center">
+                <img
+                  src="./assets/images/tab-image/tab-image-1.svg"
+                  alt="StashOffer AI Screenshot"
+                  class="w-full max-w-[500px] rounded-2xl"
+                />
+              </div>
+              <!-- Right: Content -->
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span
+                  class="inline-block self-start text-xs font-semibold px-4 py-1"
+                  style="
+                    background: rgba(78, 113, 255, 0.16);
+                    border-radius: 4px;
+                    color: #4E71FF;
+                  "
+                  >Generate</span
+                >
+                <h2
+                  class="text-3xl md:text-4xl text-gray-800 dark:text-white mb-2"
+                >
+                  Turn Days of Market Research Into Seconds –
+                  <span style="color: #4E71FF">Powered by AI</span>
+                </h2>
+                <ul class="space-y-4 text-gray-400 dark:text-gray-300 text-lg">
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#4E71FF"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Search the entire market with a single click – no more
+                      manual work</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#4E71FF"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Save time, cut costs, and earn rewards as you
+                      purchase</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#4E71FF"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Create multiple sourcing tasks instantly – we handle the
+                      rest, effortlessly</span
+                    >
+                  </li>
+                </ul>
+                <button
+                  class="flex items-center gap-2 self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white rounded-full shadow transition"
+                  style="background-color: #4E71FF;"
+                >
+                  Get Started
+                  <img
+                    style="width: 24px; height: 24px"
+                    src="./assets/images/logo-ai.svg"
+                    alt=""
+                    class="w-full max-w-[500px] rounded-2xl"
+                  />
+                </button>
+              </div>
+            </div>
+            <div
+              class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center"
+            >
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span
+                  class="inline-block self-start text-xs font-semibold px-4 py-1"
+                  style="
+                    background: rgba(40, 199, 111, 0.16);
+                    border-radius: 4px;
+                    color: #28c76f;
+                  "
+                  >Team Work</span
+                >
+                <h2
+                  class="text-3xl md:text-4xl text-gray-800 dark:text-white mb-2"
+                >
+                  Build, Assign, and Manage Your Team with Ease
+                </h2>
+                <ul class="space-y-4 text-gray-400 dark:text-gray-300 text-lg">
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#28C76F"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Distribute tasks and responsibilities seamlessly</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#28C76F"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Assign roles, set priorities, and track progress in real
+                      time</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#28C76F"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Monitor team performance, timelines, and spending — all
+                      in one place</span
+                    >
+                  </li>
+                </ul>
+                <button
+                  class="flex items-center gap-2 self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white rounded-full shadow transition"
+                  style="background-color: #4E71FF;"
+                >
+                  Get Started
+                  <img
+                    style="width: 24px; height: 24px"
+                    src="./assets/images/logo-ai.svg"
+                    alt=""
+                    class="w-full max-w-[500px] rounded-2xl"
+                  />
+                </button>
+              </div>
+
+              <div class="flex justify-center">
+                <img
+                  src="./assets/images/tab-image/tab-image-2.svg"
+                  alt="StashOffer AI Screenshot"
+                  class="w-full max-w-[500px] rounded-2xl"
+                />
+              </div>
+            </div>
+            <div
+              class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center"
+            >
+              <!-- Left: Image -->
+              <div class="flex justify-center">
+                <img
+                  src="./assets/images/tab-image/tab-image-3.svg"
+                  alt="StashOffer AI Screenshot"
+                  class="w-full max-w-[500px] rounded-2xl"
+                />
+              </div>
+              <!-- Right: Content -->
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span
+                  class="inline-block self-start text-xs font-semibold px-4 py-1"
+                  style="
+                    background: rgba(255, 76, 81, 0.16);
+                    border-radius: 4px;
+                    color: #ff4c51;
+                  "
+                  >Organize</span
+                >
+                <h2
+                  class="text-3xl md:text-4xl text-gray-800 dark:text-white mb-2"
+                >
+                  Clear the Clutter. Make Faster Decisions.
+                </h2>
+                <ul class="space-y-4 text-gray-400 dark:text-gray-300 text-lg">
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#FF4C51"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span>Organize tasks and set clear priorities</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#FF4C51"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Add notes, attach files, and track every activity in one
+                      place</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#FF4C51"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Manage your calendar and stay ahead of upcoming
+                      deadlines</span
+                    >
+                  </li>
+                </ul>
+                <button
+                  class="flex items-center gap-2 self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white rounded-full shadow transition"
+                  style="background-color: #4E71FF;"
+                >
+                  Get Started
+                  <img
+                    style="width: 24px; height: 24px"
+                    src="./assets/images/logo-ai.svg"
+                    alt=""
+                    class="w-full max-w-[500px] rounded-2xl"
+                  />
+                </button>
+              </div>
+            </div>
+            <div
+              class="max-w-6xl mx-auto mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 items-center"
+            >
+              <div class="flex flex-col items-start gap-8 md:pl-16">
+                <span
+                  class="inline-block self-start text-xs font-semibold px-4 py-1"
+                  style="
+                    background: rgba(0, 186, 209, 0.16);
+                    border-radius: 4px;
+                    color: #00bad1;
+                  "
+                  >Financials</span
+                >
+
+                <h2
+                  class="text-3xl md:text-4xl text-gray-800 dark:text-white mb-2"
+                >
+                  Take Control of Your Spending
+                </h2>
+                <ul class="space-y-4 text-gray-400 dark:text-gray-300 text-lg">
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#00BAD1"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span>Track and manage all your expenses in one place</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#00BAD1"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Separate personal and business spending
+                      effortlessly</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <div
+                      class="flex-shrink-0 w-16 h-16 bg-white shadow-xl flex items-center justify-center"
+                      style="
+                        border-radius: 8px;
+                        box-shadow: 0 8px 32px 0 rgba(80, 112, 251, 0.1);
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-star"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#00BAD1"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      >Access detailed reports and stay on top of your
+                      budget</span
+                    >
+                  </li>
+                </ul>
+                <button
+                  class="flex items-center gap-2 self-start w-auto max-w-max mt-6 px-8 py-3 text-base font-semibold text-white rounded-full shadow transition"
+                  style="background-color: #4E71FF;"
+                >
+                  Get Started
+                  <img
+                    style="width: 24px; height: 24px"
+                    src="./assets/images/logo-ai.svg"
+                    alt=""
+                    class="w-full max-w-[500px] rounded-2xl"
+                  />
+                </button>
+              </div>
+
+              <div class="flex justify-center">
+                <img
+                  src="./assets/images/tab-image/tab-image-4.svg"
+                  alt="StashOffer AI Screenshot"
+                  class="w-full max-w-[500px] rounded-2xl"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Tab End -->
+
+        <div class="w-full bg-white dark:bg-white/[0.01]">
+          <img
+            class="w-full"
+            src="./assets/images/clouds-shape.svg"
+            alt="Clouds Shape Background"
+            style="transform: rotate(180deg);"
+          />
+        </div>
+
+        <!-- Benefits Start -->
+        <section
+          class="pt-14 md:pt-28"
+          style="background-image: linear-gradient(180deg, rgb(251 215 156) 0%, rgba(255, 174, 30, 0.4) 30%, rgba(255, 174, 30, 0.8) 60%, #FFAE1E 80%, rgba(250, 215, 154, 1) 100%);"
+        >
+        <div class="wrapper">
+            <div class="max-w-2xl mx-auto mb-12 text-center">
+              <h2 class="max-w-lg mx-auto mb-3 font-bold text-center text-white dark:text-white/90 text-3xl md:text-title-lg">
+                The key benefits of using our tools.
+              </h2>
+              <p class="max-w-2xl mx-auto text-base dark: font-normal leading-6 text-white/50">
+                Unlock the Potential of Innovation. Discover the Advanced AI
+                Tools Transforming Your Ideas into Reality with Unmatched
+                Precision and Intelligence.
+              </p>
+            </div>
+            <div class="max-w-[1008px] mx-auto">
+              <div class="grid lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-6">
+                  <div class="relative flex flex-col justify-between bg-primary-500 rounded-[20px] p-9 md:p-13">
+                    <div class="max-w-sm mb-32">
+                      <h3 class="font-bold text-white text-2xl md:text-3xl mb-4">
+                        Craft Professional-Grade Content with AI
+                      </h3>
+                      <p class="text-base text-white/70">
+                        Transform your ideas into groundbreaking realities with
+                        advanced AI tools.
+                      </p>
+                    </div>
+                    <div>
+                      <img src="./assets/images/benefits/ind-1.svg" class="absolute left-8 top-[61%] floating-1" alt="">
+                      <img src="./assets/images/benefits/ind-2.svg" class="absolute right-28 top-[55%] floating-2" alt="">
+                      <img src="./assets/images/benefits/ind-3.svg" class="right-8 absolute bottom-[15%] floating-3" alt="">
+                      <img src="./assets/images/benefits/bn-1.svg" class="-mb-8 md:-mb-11" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="lg:col-span-6">
+                  <div class="benefits-bg rounded-[20px] p-12 overflow-hidden">
+                    <div>
+                      <img src="./assets/images/benefits/bn-2.svg" alt="">
+                    </div>
+                    <div>
+                      <h3 class="font-bold max-w-xs text-white text-2xl md:text-3xl mb-4">
+                        Boost your Productivity 10X with our AI agent tools.
+                      </h3>
+                      <p class="text-base max-w-sm text-white/70">
+                        Unlock the Potential of Innovation, Discover the
+                        Advanced AI Tools Intelligence.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="lg:col-span-12">
+                  <div style="background-color: #4E71FF;" class="lg:px-12 p-8 lg:pb-0 lg:p-12 relative rounded-[20px] h-full lg:flex lg:flex-row justify-between bg-cover flex-col gap-5">
+                    <div class="max-w-sm relative z-10">
+                      <h3 class="font-bold text-white text-2xl md:text-3xl mb-4">
+                        Overcome Writer's Block Today
+                      </h3>
+                      <p class="text-base text-white/70 mb-8">
+                        Discover the cutting-edge AI tools that bring your ideas
+                        to life with exceptional accuracy.
+                      </p>
+                      <a href="contact.html" class="font-medium inline-block text-sm text-white rounded-full bg-primary-500 hover:bg-primary-600 transition py-3 px-6">
+                        Try it now for Free
+                      </a>
+                    </div>
+                    <div>
+                      <img src="./assets/images/benefits/bn-3.svg" class="hidden lg:block relative z-10" alt="">
+                    </div>
+                    <img src="./assets/images/benefits/blur-shape.png" alt="" class="h-full w-full -z-0 absolute top-0 right-0">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrapper py-14 md:py-28">
+            <div class="max-w-[1016px] relative z-30 mx-auto pt-14 pb-16">
+              <p class="text-center text-white/50 text-lg font-medium">
+                Trusted by worlds largest companies including...
+              </p>
+              <div
+                class="flex flex-wrap justify-center items-center gap-7 md:gap-14 mt-10"
+              >
+                <img
+                  src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 1"
+                />
+                <img
+                  src="./assets/images/brands/br-2.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 2"
+                />
+                <img
+                  src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 1"
+                />
+                <img
+                  src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 1"
+                />
+                <img
+                  src="./assets/images/brands/br-1.svg"
+                  class="opacity-50 transition hover:opacity-100"
+                  alt="Trusted Brand 1"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Benefits End -->
+
+        <!-- Testimonial Start -->
+        <section
+          class="pb-14 md:pb-28 relative"
+          x-data="{ showAll: false }"
+          style="
+            
+            background: linear-gradient(to bottom, rgb(250 214 150) 0%, rgba(187, 198, 245, 0.8) 30%, rgba(249, 250, 251, 0.9) 70%, oklch(1 0 0) 100%);
+          
+          "
+        >
+          <div class="wrapper">
+            <div>
+              <div class="max-w-2xl mx-auto mb-12 text-center">
+                <h2
+                  class="mb-3 font-bold text-center text-white text-3xl dark:text-white/90 md:text-title-lg"
+                >
+                  What Our Customers Say
+                </h2>
+                <p
+                  class="max-w-xl mx-auto leading-6 text-white dark:text-gray-400"
+                >
+                  Experiences of businesses conducting market research with
+                  StashOffer. Discover how our AI-powered agent simplifies their
+                  work.
+                </p>
+              </div>
+
+              <!-- Testimonials Grid -->
+              <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+                <!-- Testimonial 1 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-1.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        John Smith
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Smith Restaurant Chain
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      Thanks to StashOffer, we completed our new location
+                      research in 3 days. Our AI agent provided us with
+                      excellent analyses and made decision-making easier.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 dark:bg-white/[0.03] bg-white/90 rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-2.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Sarah Johnson
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Johnson Furniture Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      We no longer have to wait months for market research.
+                      StashOffer's AI agent provides us with detailed reports
+                      instantly.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 bg-white/90 rounded-2xl dark:bg-white/[0.03]"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-3.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Michael Brown
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Brown Technology Inc.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      StashOffer, which we used for competitive analysis,
+                      provided us with very valuable information about our
+                      competitors. I definitely recommend it.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 bg-white/90 rounded-2xl dark:bg-white/[0.03]"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-4.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Emily Davis
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Davis Cosmetics Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      While conducting market research for our new product
+                      launch, StashOffer's AI agent provided us with excellent
+                      target audience analysis.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 dark:bg-white/[0.03] bg-white/90 rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-5.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        David Wilson
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-white">
+                        Wilson Construction Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      The data provided by StashOffer while conducting market
+                      analysis for our real estate investments was very
+                      valuable. Fast and reliable.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div
+                  class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                >
+                  <div
+                    class="flex items-center p-3 mb-3 dark:bg-white/[0.03] bg-white/90 rounded-2xl"
+                  >
+                    <div>
+                      <img
+                        src="./assets/images/users/user-6.png"
+                        alt="Ralph Edwards"
+                        class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-gray-800 font-base dark:text-white/90">
+                        Lisa Anderson
+                      </h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Anderson E-commerce Ltd.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]">
+                    <p
+                      class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                    >
+                      StashOffer, which we used to develop our online sales
+                      strategy, showed us excellent market opportunities.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Hidden testimonials (shown when "Show more" is clicked) -->
+                <template x-if="showAll">
+                  <!-- Testimonial 7 -->
+                  <div
+                    class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                  >
+                    <div
+                      class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                    >
+                      <div>
+                        <img
+                          src="./assets/images/users/user-1.png"
+                          alt="Ralph Edwards"
+                          class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-gray-800 font-base dark:text-white/90">
+                          Ralph Edwards
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Big Kahuna Burger Ltd
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]"
+                    >
+                      <p
+                        class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                      >
+                        As a Senior Software Developer I found TailAdmin perfect
+                        write code that easy can be used in my projects, which
+                        some are production already.
+                      </p>
+                    </div>
+                  </div>
+                </template>
+
+                <template x-if="showAll">
+                  <!-- Testimonial 8 -->
+                  <div
+                    class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                  >
+                    <div
+                      class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                    >
+                      <div>
+                        <img
+                          src="./assets/images/users/user-5.png"
+                          alt="Ralph Edwards"
+                          class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-gray-800 font-base dark:text-white/90">
+                          Darlene Robertson
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Abstergo Ltd.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03]"
+                    >
+                      <p
+                        class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                      >
+                        As a Senior Software Developer I found TailAdmin perfect
+                        write code that easy can be used in my projects, which
+                        some are production already.
+                      </p>
+                    </div>
+                  </div>
+                </template>
+
+                <template x-if="showAll">
+                  <!-- Testimonial 9 -->
+                  <div
+                    class="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 dark:hover:border-white/10 border rounded-[20px] border-gray-100 hover:border-primary-200 transition"
+                  >
+                    <div
+                      class="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/[0.03] rounded-2xl"
+                    >
+                      <div>
+                        <img
+                          src="./assets/images/users/user-6.png"
+                          alt="Ralph Edwards"
+                          class="w-[52px] h-[52px] ring-2 ring-white dark:ring-gray-700 mr-4 rounded-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-gray-800 font-base dark:text-white/90">
+                          Devon Lane
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Binford Ltd.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-5 rounded-2xl bg-white/90 dark:bg-white/[0.03] d"
+                    >
+                      <p
+                        class="text-base leading-6 text-gray-700 dark:text-gray-400"
+                      >
+                        As a Senior Software Developer I found TailAdmin perfect
+                        write code that easy can be used in my projects, which
+                        some are production already.
+                      </p>
+                    </div>
+                  </div>
+                </template>
+              </div>
+
+              <!-- Show More Button -->
+              <div class="mt-8 text-center relative z-30">
+                <button
+                  @click="showAll = !showAll"
+                  class="inline-flex items-center dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 px-6 py-3.5 text-sm font-medium text-gray-800 bg-white border border-gray-200 dark:hover:bg-gray-900 rounded-full shadow-theme-xs hover:bg-gray-50 focus:outline-none"
+                >
+                  <span x-text="showAll ? 'Show less...' : 'Show more...'"
+                    >Show more...</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <template x-if="!showAll">
+            <div class="absolute left-0 right-0 bottom-0 h-[180px] pointer-events-none z-20 bg-gradient-to-b from-transparent via-gray-50/80 to-gray-50 dark:from-transparent dark:via-gray-900/80 dark:to-gray-900"></div>
+          </template>
+          <template x-if="showAll">
+            <div class="absolute left-0 right-0 bottom-0 h-[100px] pointer-events-none z-20 bg-gradient-to-b from-transparent via-gray-50/80 to-gray-50 dark:from-transparent dark:via-gray-900/80 dark:to-gray-900"></div>
+          </template>
+        </section>
+        <!-- Testimonial End -->
+
+        
+
+        <!-- Faq Start -->
+        <section class="py-14 md:py-28">
+          <div class="wrapper">
+            <div class="max-w-2xl mx-auto mb-12 text-center">
+              <h2
+                class="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg"
+              >
+                Frequently Asked Questions
+              </h2>
+              <p
+                class="max-w-md mx-auto leading-6 text-gray-500 dark:text-gray-400"
+              >
+                Answered all frequently asked questions, Still confused? feel
+                free contact with us
+              </p>
+            </div>
+            <div class="max-w-[600px] mx-auto">
+              <!-- Parent component with shared state -->
+              <div class="space-y-4" x-data="{ activeItem: 1 }">
+                <!-- FAQ Item 1 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 1 ? null : 1"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >Do I get free updates?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 1"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="#98A2B3"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="white"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 1"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div class="mt-5" x-show="activeItem === 1">
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Aenean luctus magna quis tellus euismod, eget pharetra leo
+                      mollis. Donec eget lacus non elit blandit pharetra vitae
+                      volutpat libero.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 2 ? null : 2"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >What does the number of "Projects" refer to?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 2"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 2"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 2"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      The number of "Projects" refers to the total number of
+                      separate workspaces you can create and manage within your
+                      account. Each project can have its own settings, team
+                      members, and resources.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 3 ? null : 3"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white"
+                      >Can I upgrade to a higher plan?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 3"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 3"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 3"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      Yes, you can upgrade to a higher plan at any time. When
+                      you upgrade, you'll be charged the prorated difference for
+                      the remainder of your current billing cycle. Your new
+                      features will be available immediately after upgrading.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 4 ? null : 4"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >What does "Unlimited Projects" mean?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 4"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 4"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 4"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      "Unlimited Projects" means you can create as many projects
+                      as you need without any restrictions. This allows you to
+                      organize your work efficiently without worrying about
+                      hitting a project limit.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="pb-5 border-b border-gray-200 dark:border-gray-800">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full text-left"
+                    @click="activeItem = activeItem === 5 ? null : 5"
+                  >
+                    <span
+                      class="text-lg font-medium text-gray-800 dark:text-white/90"
+                      >How can I add Open AI Key?</span
+                    >
+                    <span class="flex-shrink-0 ml-6">
+                      <span
+                        x-show="activeItem === 5"
+                        class="text-xl text-gray-400"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3094)">
+                            <path
+                              d="M5 11.9194V13.9194H19V11.9194H5Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3094">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <span
+                        x-show="activeItem !== 5"
+                        class="text-xl text-gray-400"
+                        style="display: none"
+                      >
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_9283_3101)">
+                            <path
+                              d="M11 11.9194V5.91943H13V11.9194H19V13.9194H13V19.9194H11V13.9194H5V11.9194H11Z"
+                              fill="currentColor"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_9283_3101">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                transform="translate(0 0.919434)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="mt-4"
+                    x-show="activeItem === 5"
+                    style="display: none"
+                  >
+                    <p
+                      class="text-base leading-7 text-gray-500 dark:text-gray-400"
+                    >
+                      To add your OpenAI API key, go to your account settings
+                      and navigate to the "API Keys" section. Click on "Add New
+                      Key", paste your OpenAI API key, and save your changes.
+                      The key will be securely stored and used for all
+                      AI-powered features.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Faq End -->
+      </main>
+      <!-- Main End -->
+
+      <!-- Footer Start -->
+      <footer class="relative overflow-hidden bg-gray-900">
+        <span class="absolute top-0 -translate-x-1/2 left-1/2">
+          <svg
+            width="1260"
+            height="457"
+            viewBox="0 0 1260 457"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_f_11105_867)">
+              <circle cx="630" cy="-173.299" r="230" fill="#3B2EFF" />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_11105_867"
+                x="0"
+                y="-803.299"
+                width="1260"
+                height="1260"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="200"
+                  result="effect1_foregroundBlur_11105_867"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </span>
+        <div class="relative z-10 py-16 xl:py-24">
+          <div class="container px-5 mx-auto sm:px-7">
+            <div class="grid gap-y-8 lg:grid-cols-12">
+              <div class="lg:col-span-3 xl:col-span-4">
+                <div>
+                  <a href="index.html" class="block mb-6">
+                    <img
+                      style="width: 300px"
+                      src="./assets/images/logo-white.svg"
+                      alt="AI UI Kit Logo"
+                    />
+                  </a>
+                  <p class="block text-sm text-gray-400 mb-9">
+                    Discover the most suitable opportunities for your business
+                    with our AI-powered market research agent and make strategic
+                    decisions.
+                  </p>
+                  <div class="flex">
+                    <a
+                      href="https://www.linkedin.com/company/pimjo/posts/?feedView=all"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_11105_879)">
+                          <path
+                            d="M13.5447 3.68965C12.5249 3.22173 11.4313 2.87699 10.2879 2.67954C10.2671 2.67573 10.2463 2.68525 10.2356 2.7043C10.0949 2.95444 9.93915 3.28077 9.83006 3.53727C8.60027 3.35316 7.37679 3.35316 6.17221 3.53727C6.0631 3.27507 5.90166 2.95444 5.76038 2.7043C5.74966 2.68589 5.72886 2.67636 5.70803 2.67954C4.56527 2.87636 3.47171 3.2211 2.45129 3.68965C2.44246 3.69346 2.43488 3.69982 2.42986 3.70806C0.355594 6.80697 -0.212634 9.82971 0.0661201 12.815C0.0673814 12.8296 0.0755799 12.8435 0.086932 12.8524C1.45547 13.8574 2.78114 14.4676 4.08219 14.872C4.10301 14.8784 4.12507 14.8707 4.13832 14.8536C4.44608 14.4333 4.72043 13.9902 4.95565 13.5241C4.96953 13.4968 4.95628 13.4645 4.92791 13.4537C4.49275 13.2886 4.0784 13.0873 3.67982 12.8588C3.64829 12.8404 3.64577 12.7953 3.67477 12.7737C3.75865 12.7108 3.84255 12.6454 3.92264 12.5794C3.93713 12.5674 3.95732 12.5648 3.97435 12.5724C6.59286 13.7679 9.4277 13.7679 12.0153 12.5724C12.0323 12.5642 12.0525 12.5667 12.0677 12.5788C12.1478 12.6448 12.2316 12.7108 12.3161 12.7737C12.3451 12.7953 12.3433 12.8404 12.3117 12.8588C11.9131 13.0918 11.4988 13.2886 11.063 13.453C11.0346 13.4638 11.022 13.4968 11.0359 13.5241C11.2762 13.9895 11.5505 14.4327 11.8526 14.853C11.8652 14.8707 11.8879 14.8784 11.9087 14.872C13.2161 14.4676 14.5417 13.8574 15.9103 12.8524C15.9223 12.8435 15.9298 12.8302 15.9311 12.8156C16.2647 9.36431 15.3723 6.36636 13.5655 3.7087C13.5611 3.69982 13.5535 3.69346 13.5447 3.68965ZM5.34668 10.9973C4.55833 10.9973 3.90876 10.2735 3.90876 9.38464C3.90876 8.49578 4.54574 7.77202 5.34668 7.77202C6.15392 7.77202 6.79721 8.50214 6.78459 9.38464C6.78459 10.2735 6.14761 10.9973 5.34668 10.9973ZM10.6632 10.9973C9.87484 10.9973 9.22526 10.2735 9.22526 9.38464C9.22526 8.49578 9.86222 7.77202 10.6632 7.77202C11.4704 7.77202 12.1137 8.50214 12.1011 9.38464C12.1011 10.2735 11.4704 10.9973 10.6632 10.9973Z"
+                            fill="currentColor"
+                            fill-opacity="0.8"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_11105_879">
+                            <rect
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              transform="translate(0 0.919434)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://x.com/PimjoHQ"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <path
+                          d="M12.2176 2.18848H14.4666L9.55323 7.80414L15.3334 15.4458H10.8076L7.26277 10.8112L3.20671 15.4458H0.956369L6.2117 9.43921L0.666748 2.18848H5.30749L8.51168 6.4247L12.2176 2.18848ZM11.4283 14.0997H12.6745L4.63034 3.4639H3.29306L11.4283 14.0997Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://github.com/PIMJO"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_11105_885)">
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M8.00009 1.25293C6.10091 1.25392 4.264 1.92657 2.81783 3.15061C1.37166 4.37465 0.410521 6.07027 0.106282 7.93426C-0.197957 9.79825 0.174536 11.7091 1.15717 13.325C2.13979 14.941 3.66848 16.1568 5.46987 16.7549C5.86729 16.8287 6.01698 16.5824 6.01698 16.3729C6.01698 16.1635 6.00903 15.5563 6.00638 14.8924C3.78085 15.3732 3.31057 13.9533 3.31057 13.9533C2.9476 13.0312 2.42301 12.7889 2.42301 12.7889C1.69706 12.2962 2.47733 12.3054 2.47733 12.3054C3.28143 12.3621 3.70402 13.1261 3.70402 13.1261C4.41672 14.3418 5.57585 13.9901 6.03155 13.7847C6.10309 13.2696 6.31107 12.9193 6.54025 12.7204C4.76247 12.5202 2.89461 11.8378 2.89461 8.78988C2.88359 7.9994 3.1786 7.23496 3.71859 6.65472C3.63646 6.4545 3.36224 5.64575 3.79675 4.54722C3.79675 4.54722 4.46839 4.33383 5.99712 5.36256C7.30836 5.00601 8.69183 5.00601 10.0031 5.36256C11.5305 4.33383 12.2008 4.54722 12.2008 4.54722C12.6366 5.64312 12.3624 6.45187 12.2803 6.65472C12.822 7.23506 13.1176 8.00083 13.1056 8.79251C13.1056 11.8471 11.2337 12.5202 9.45331 12.7164C9.73945 12.964 9.99512 13.4475 9.99512 14.1903C9.99512 15.2546 9.98585 16.1108 9.98585 16.3729C9.98585 16.585 10.1302 16.8326 10.5356 16.7549C12.3372 16.1567 13.866 14.9407 14.8487 13.3245C15.8313 11.7082 16.2036 9.79713 15.899 7.93296C15.5944 6.0688 14.6328 4.37317 13.1861 3.14933C11.7395 1.9255 9.90215 1.25329 8.00274 1.25293H8.00009Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.02954 12.6743C3.01232 12.7139 2.94873 12.7257 2.89707 12.6981C2.84541 12.6704 2.80699 12.619 2.82554 12.5782C2.84408 12.5374 2.90635 12.5268 2.95801 12.5545C3.00967 12.5821 3.04941 12.6348 3.02954 12.6743Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.35423 13.0339C3.3268 13.0476 3.29541 13.0514 3.26545 13.0447C3.23548 13.038 3.2088 13.0211 3.18997 12.997C3.13831 12.9417 3.1277 12.8653 3.16744 12.831C3.20719 12.7968 3.27873 12.8126 3.33039 12.8679C3.38205 12.9232 3.39398 12.9996 3.35423 13.0339Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.66958 13.4908C3.62056 13.525 3.5371 13.4908 3.49074 13.4223C3.47791 13.41 3.46772 13.3953 3.46075 13.379C3.45379 13.3627 3.4502 13.3452 3.4502 13.3275C3.4502 13.3098 3.45379 13.2922 3.46075 13.2759C3.46772 13.2596 3.47791 13.2449 3.49074 13.2326C3.53975 13.1997 3.62321 13.2326 3.66958 13.2998C3.71594 13.367 3.71727 13.4565 3.66958 13.4908Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M4.09725 13.9334C4.05353 13.9822 3.96478 13.969 3.89192 13.9031C3.81906 13.8373 3.80183 13.7477 3.84555 13.7003C3.88926 13.6529 3.97802 13.666 4.05353 13.7306C4.12904 13.7951 4.14361 13.886 4.09725 13.9334Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M4.69753 14.1917C4.67766 14.2536 4.58758 14.2813 4.4975 14.2549C4.40742 14.2286 4.3478 14.1548 4.36502 14.0916C4.38225 14.0284 4.47365 13.9994 4.56506 14.0284C4.65646 14.0573 4.71475 14.1271 4.69753 14.1917Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M5.35189 14.2361C5.35189 14.3006 5.27771 14.3559 5.18233 14.3572C5.08695 14.3586 5.00879 14.3059 5.00879 14.2413C5.00879 14.1768 5.08297 14.1215 5.17835 14.1201C5.27373 14.1188 5.35189 14.1702 5.35189 14.2361Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M5.96118 14.1349C5.9731 14.1994 5.90687 14.2666 5.81149 14.2824C5.71611 14.2982 5.63265 14.26 5.62073 14.1968C5.60881 14.1336 5.67769 14.0651 5.77042 14.0479C5.86315 14.0308 5.94926 14.0703 5.96118 14.1349Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_11105_885">
+                            <rect
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              transform="translate(0 0.919434)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.facebook.com/PimjoHQ"
+                      target="_blank"
+                      class="text-gray-400 hover:text-white/80 size-10"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="19"
+                        viewBox="0 0 18 19"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_11105_895)">
+                          <path
+                            d="M10.5 11.0444H12.375L13.125 8.04443H10.5V6.54443C10.5 5.7724 10.5 5.04443 12 5.04443H13.125V2.52451C12.8807 2.49207 11.9573 2.41943 10.9822 2.41943C8.9463 2.41943 7.5 3.66208 7.5 5.94422V8.04443H5.25V11.0444H7.5V17.4194H10.5V11.0444Z"
+                            fill="currentColor"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_11105_895">
+                            <rect
+                              width="18"
+                              height="18"
+                              fill="currentColor"
+                              transform="translate(0 0.919434)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-6 xl:col-span-5">
+                <div class="grid sm:grid-cols-3 gap-7">
+                  <div>
+                    <span class="block mb-6 text-sm text-gray-400"
+                      >Services</span
+                    >
+                    <nav class="flex flex-col space-y-3">
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Status
+                      </a>
+                      <a
+                        href="pricing.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Pricing
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        FAQ
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Help Documentation
+                      </a>
+                      <a
+                        href="privacy.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Privacy Policy
+                      </a>
+                    </nav>
+                  </div>
+                  <div>
+                    <span class="block mb-6 text-sm text-gray-400"
+                      >Features</span
+                    >
+                    <nav class="flex flex-col space-y-3">
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        AI Market Research
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Competitive Analysis
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Target Audience Analysis
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Market Trends
+                      </a>
+                      <a
+                        href="#"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Detailed Reporting
+                      </a>
+                    </nav>
+                  </div>
+                  <div>
+                    <span class="relative block mb-6 text-sm text-gray-400"
+                      >Account</span
+                    >
+                    <nav class="flex flex-col space-y-3">
+                      <a
+                        href="signin.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Sign In
+                      </a>
+                      <a
+                        href="signup.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Sign Up
+                      </a>
+                      <a
+                        href="forgot-password.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Reset Password
+                      </a>
+                      <a
+                        href="contact.html"
+                        class="text-sm font-normal text-gray-400 transition hover:text-white"
+                      >
+                        Support
+                      </a>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-3">
+                <div>
+                  <span class="block mb-6 text-sm text-gray-400"
+                    >Stay Connected</span
+                  >
+                  <p class="block mb-5 text-sm text-gray-400">
+                    Subscribe now for exclusive insights and offers!
+                  </p>
+                  <form>
+                    <div
+                      class="flex flex-col items-center gap-2 w-full sm:max-w-64"
+                    >
+                      <input
+                        type="text"
+                        placeholder="Enter your email address"
+                        class="w-full h-12 p-4 text-sm text-white border border-gray-700 rounded-full placeholder:text-center placeholder:text-gray-400 placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
+                      />
+                      <button
+                        class="w-full px-6 py-3 text-sm font-medium text-white transition rounded-full cursor-pointer bg-primary-500 hover:bg-primary-600"
+                      >
+                        Subscribe Now
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800">
+          <div class="container relative z-10 px-5 mx-auto sm:px-7">
+            <div
+              class="py-5 text-center"
+              x-data="{ currentYear: new Date().getFullYear() }"
+            >
+              <p class="text-sm text-gray-500">
+                &copy; <span x-text="currentYear"></span> StashOffer - All
+                Rights Reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer End -->
+    </div>
+
+    <script defer src="./assets/js/alpine.min.js"></script>
+    <script defer src="./assets/js/glightbox.min.js"></script>
+    <script defer src="./assets/js/app.js"></script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"95aeeb25be29d21d","version":"2025.6.2","r":1,"token":"9a6015d415bb4773a0bff22543062d3b","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
